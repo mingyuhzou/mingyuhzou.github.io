@@ -9,7 +9,7 @@
     <atom:link href="https://mingyuhzou.github.io/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>学海无涯，回头是岸</description>
-    <pubDate>Thu, 10 Apr 2025 03:12:40 GMT</pubDate>
+    <pubDate>Thu, 10 Apr 2025 05:23:40 GMT</pubDate>
     <generator>http://hexo.io/</generator>
     
     <item>
@@ -18,7 +18,15 @@
       <guid>https://mingyuhzou.github.io/2025/04/10/%E5%8D%9A%E5%AE%A2%E4%BD%BF%E7%94%A8/</guid>
       <pubDate>Thu, 10 Apr 2025 04:00:00 GMT</pubDate>
       
+        
+        
+      <description>&lt;h1 id=&quot;创建&quot;&gt;&lt;a href=&quot;#创建&quot; class=&quot;headerlink&quot; title=&quot;创建&quot;&gt;&lt;/a&gt;创建&lt;/h1&gt;&lt;p&gt;文章创建在&lt;strong&gt;Blog&#92;source&#92;_posts&lt;/strong&gt;下&lt;/p&gt;
+&lt;h1 id=&quot;标签&quot;&gt;&lt;a href=&quot;#标签</description>
+        
       
+      
+      
+      <content:encoded><![CDATA[<h1 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h1><p>文章创建在<strong>Blog\source\_posts</strong>下</p><h1 id="标签"><a href="#标签" class="headerlink" title="标签"></a>标签</h1><p>每篇博客开头需要设置<strong>Front-matter</strong></p><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">title:</span> <span class="string">我的第一篇文章</span>               <span class="comment"># 标题</span></span><br><span class="line"><span class="attr">date:</span> <span class="number">2025-04-10 15:00:00</span>   <span class="comment"># 日期</span></span><br><span class="line"><span class="attr">excerpt:</span> <span class="string">这是一篇关于技术的文章。</span> <span class="comment"># 摘要</span></span><br><span class="line"><span class="attr">tags:</span>                              <span class="comment"># 标签</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">技术</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">编程</span></span><br><span class="line"><span class="attr">categories:</span>                        <span class="comment"># 类别</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">编程</span></span><br><span class="line">  </span><br><span class="line"> <span class="attr">top:</span> <span class="literal">true</span>                         <span class="comment"># 是否顶置</span></span><br></pre></td></tr></table></figure><h1 id="提交"><a href="#提交" class="headerlink" title="提交"></a>提交</h1><p>对博客属性做了修改，或者创建了文章后，提交</p><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo clean </span><br><span class="line">hexo g -d # 部署到远程</span><br></pre></td></tr></table></figure><p>可以在本地打开</p><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>]]></content:encoded>
       
       
       <category domain="https://mingyuhzou.github.io/categories/%E5%8D%9A%E5%AE%A2/">博客</category>
@@ -41,28 +49,6 @@
       
       
       <comments>https://mingyuhzou.github.io/2025/04/10/My-New-post/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>Hello World</title>
-      <link>https://mingyuhzou.github.io/2025/04/09/hello-world/</link>
-      <guid>https://mingyuhzou.github.io/2025/04/09/hello-world/</guid>
-      <pubDate>Wed, 09 Apr 2025 10:57:48 GMT</pubDate>
-      
-        
-        
-      <description>&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt; for</description>
-        
-      
-      
-      
-      <content:encoded><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content:encoded>
-      
-      
-      
-      
-      <comments>https://mingyuhzou.github.io/2025/04/09/hello-world/#disqus_thread</comments>
       
     </item>
     
