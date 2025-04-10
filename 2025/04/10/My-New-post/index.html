@@ -390,32 +390,15 @@
   </div>
 
 
-  <script async src="https://cdn.jsdelivr.net/gh/liyupi/busuanzi.pure.js"></script>
+ <script async src="https://cdn.jsdelivr.net/gh/liyupi/busuanzi.pure.js"></script>
 
-  <span id="busuanzi_container_site_pv">总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
-  <span class="post-meta-divider">|</span>
-  <span id="busuanzi_container_site_uv">总访客数 <span id="busuanzi_value_site_uv"></span> 人</span>
-
-  <script>
-    $(document).ready(function () {
-        var int = setInterval(fixCount, 100); // 每100ms检查一次
-        var countOffset = 20000;
-
-        function fixCount() {
-            var pvEl = $("#busuanzi_value_site_pv");
-            var uvEl = $("#busuanzi_value_site_uv");
-
-            var pv = parseInt(pvEl.text());
-            var uv = parseInt(uvEl.text());
-
-            if (!isNaN(pv) && !isNaN(uv)) {
-                pvEl.text(pv + countOffset);
-                uvEl.text(uv + countOffset);
-                clearInterval(int);
-            }
-        }
-    });
-  </script>
+<span id="busuanzi_container_site_pv">
+  总访问量 <span id="busuanzi_value_site_pv"></span> 次
+</span>
+<span class="post-meta-divider">|</span>
+<span id="busuanzi_container_site_uv">
+  总访客数 <span id="busuanzi_value_site_uv"></span> 人
+</span>
 
 
 
