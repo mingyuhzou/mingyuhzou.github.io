@@ -391,24 +391,34 @@
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
   </div>
 
-$(document).ready(function() {
-    var int = setInterval(fixCount, 50);
-    var countOffset = 20000;
 
-    function fixCount() {
-        var pvEl = $("#busuanzi_value_site_pv");
-        var uvEl = $("#busuanzi_value_site_uv");
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
-        if ($("#busuanzi_container_site_pv").css("display") != "none" && pvEl.text()) {
-            pvEl.text(parseInt(pvEl.text()) + countOffset);
+  <span id="busuanzi_container_site_pv">总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+  <span class="post-meta-divider">|</span>
+  <span id="busuanzi_container_site_uv">总访客数 <span id="busuanzi_value_site_uv"></span> 人</span>
+
+  <script>
+    $(document).ready(function () {
+        var int = setInterval(fixCount, 100); // 每100ms检查一次
+        var countOffset = 20000;
+
+        function fixCount() {
+            var pvEl = $("#busuanzi_value_site_pv");
+            var uvEl = $("#busuanzi_value_site_uv");
+
+            var pv = parseInt(pvEl.text());
+            var uv = parseInt(uvEl.text());
+
+            if (!isNaN(pv) && !isNaN(uv)) {
+                pvEl.text(pv + countOffset);
+                uvEl.text(uv + countOffset);
+                clearInterval(int);
+            }
         }
+    });
+  </script>
 
-        if ($("#busuanzi_container_site_uv").css("display") != "none" && uvEl.text()) {
-            uvEl.text(parseInt(uvEl.text()) + countOffset);
-            clearInterval(int);
-        }
-    }
-});
 
 
         
