@@ -518,6 +518,18 @@
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
   </div>
 
+<% if (theme.busuanziStatistics && theme.busuanziStatistics.totalTraffic) { %>
+    <span id="busuanzi_container_site_pv">
+    &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;<%- __('siteTotalVisits') %>:&nbsp;
+        <span id="busuanzi_value_site_pv" class="white-color"></span>
+</span>
+<% } %>
+<% if (theme.busuanziStatistics && theme.busuanziStatistics.totalNumberOfvisitors) { %>
+    <span id="busuanzi_container_site_pv">
+    &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;<%- __('siteTotalVisitors') %>:&nbsp;
+        <span id="busuanzi_value_site_uv" class="white-color"></span>
+</span>
+<% } %>
 
 
         
