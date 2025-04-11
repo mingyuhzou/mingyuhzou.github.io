@@ -6,7 +6,7 @@
     <content><![CDATA[]]></content>
   </entry>
   <entry>
-    <title></title>
+    <title>Flask使用教程</title>
     <url>/2025/04/11/Flask/</url>
     <content><![CDATA[<h1 id="Flask"><a href="#Flask" class="headerlink" title="Flask"></a>Flask</h1><p>Flask是一个用于web开发的微型框架，它具有一个包含基本服务的核心，其他功能可以通过扩展实现。</p>
 <p>Flask有三个依赖：路由，调试，和web服务器网关接口。</p>
@@ -237,6 +237,13 @@
 
 
 ]]></content>
+      <categories>
+        <category>flask</category>
+        <category>python</category>
+      </categories>
+      <tags>
+        <tag>flask</tag>
+      </tags>
   </entry>
   <entry>
     <title>博客使用教程</title>
