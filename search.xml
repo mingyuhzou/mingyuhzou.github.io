@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>My New post</title>
+    <url>/2025/04/10/My-New-post/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
     <title>Flask使用教程</title>
     <url>/2025/04/11/Flask/</url>
     <content><![CDATA[<h1 id="Flask"><a href="#Flask" class="headerlink" title="Flask"></a>Flask</h1><p>Flask是一个用于web开发的微型框架，它具有一个包含基本服务的核心，其他功能可以通过扩展实现。</p>
@@ -240,9 +245,19 @@
       </tags>
   </entry>
   <entry>
-    <title>My New post</title>
-    <url>/2025/04/10/My-New-post/</url>
-    <content><![CDATA[]]></content>
+    <title>Flask教程</title>
+    <url>/2025/04/11/flask%E6%95%99%E7%A8%8B/</url>
+    <content><![CDATA[<p>这是一个测试上传 PDF 文件的例子。</p>
+<p>👉 [点击查看 PDF 文件](.&#x2F;Flask Web开发：基于Python的Web应用开发实战.第2版.pdf)</p>
+]]></content>
+      <categories>
+        <category>flask</category>
+      </categories>
+      <tags>
+        <tag>flask</tag>
+        <tag>资源</tag>
+        <tag>PDF</tag>
+      </tags>
   </entry>
   <entry>
     <title>博客使用教程</title>
