@@ -238,11 +238,10 @@
 
 ]]></content>
       <categories>
-        <category>flask</category>
-        <category>python</category>
+        <category>-flask, -python</category>
       </categories>
       <tags>
-        <tag>flask</tag>
+        <tag>-flask</tag>
       </tags>
   </entry>
   <entry>
