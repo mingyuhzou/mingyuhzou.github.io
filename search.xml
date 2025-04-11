@@ -245,9 +245,9 @@
       </tags>
   </entry>
   <entry>
-    <title>Flask教程</title>
+    <title>Flask—教程-pdf</title>
     <url>/2025/04/11/flask%E6%95%99%E7%A8%8B/</url>
-    <content><![CDATA[<p>这是一个测试上传 PDF 文件的例子。</p>
+    <content><![CDATA[<p>Flask教程纸质资料</p>
 <p>👉 [点击查看 PDF 文件](.&#x2F;Flask Web开发：基于Python的Web应用开发实战.第2版.pdf)</p>
 ]]></content>
       <categories>
@@ -282,6 +282,29 @@
       </categories>
       <tags>
         <tag>博客</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>对拍器</title>
+    <url>/2025/04/10/%E5%AF%B9%E6%8B%8D/</url>
+    <content><![CDATA[<h1 id="对拍"><a href="#对拍" class="headerlink" title="对拍"></a>对拍</h1><p>对拍程序首先需要一个数据生成器gen.py，格式看题目要求</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> random <span class="keyword">import</span> *</span><br><span class="line">n=randint(<span class="number">1</span>,<span class="number">200</span>)</span><br><span class="line"><span class="built_in">len</span>=randint(n,<span class="number">300</span>)</span><br><span class="line"><span class="built_in">print</span>(n,<span class="built_in">len</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">    l,s=randint(<span class="number">1</span>,<span class="built_in">len</span>),randint(<span class="number">1</span>,<span class="number">100</span>)</span><br><span class="line">    <span class="built_in">print</span>(l,s)</span><br></pre></td></tr></table></figure>
+
+
+
+<p>然后就是自己的正解和暴力的代码AC.py time_out.py</p>
+<p>最后就是比较程序，借助subprocess提供的命令行调用工具</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> subprocess</span><br><span class="line"></span><br><span class="line"><span class="comment"># 测试用例数</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">10</span>): </span><br><span class="line">    <span class="comment"># 生成输入数据 check_output运行命令并接受程序的输出 text将返回结果解码为字符串</span></span><br><span class="line">    input_data=subprocess.check_output([<span class="string">&#x27;python&#x27;</span>,<span class="string">&#x27;gen.py&#x27;</span>],text=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 调用正解和暴力解 指定input数据</span></span><br><span class="line">    correct=subprocess.check_output([<span class="string">&#x27;python&#x27;</span>,<span class="string">&#x27;AC.py&#x27;</span>],<span class="built_in">input</span>=input_data,text=<span class="literal">True</span>)</span><br><span class="line">    time_out=subprocess.check_output([<span class="string">&#x27;python&#x27;</span>,<span class="string">&#x27;time_out.py&#x27;</span>],<span class="built_in">input</span>=input_data,text=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 直接对结果比较即可</span></span><br><span class="line">    <span class="keyword">if</span> time_out!=correct:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;input_data: &#x27;</span>)</span><br><span class="line">        <span class="built_in">print</span>(input_data,end=<span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line"></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;correct: &#x27;</span>)</span><br><span class="line">        <span class="built_in">print</span>(time_out,end=<span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line"></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;error: &#x27;</span>)</span><br><span class="line">        <span class="built_in">print</span>(correct,end=<span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">break</span></span><br></pre></td></tr></table></figure>
+
+
+
+]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>算法</tag>
+        <tag>python</tag>
       </tags>
   </entry>
 </search>
