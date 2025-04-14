@@ -1,8 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Flask—教程-pdf</title>
+    <url>/2025/04/11/flask%E6%95%99%E7%A8%8B/</url>
+    <content><![CDATA[<p>Flask教程纸质资料</p>
+<p>👉 [点击查看 PDF 文件](.&#x2F;Flask Web开发：基于Python的Web应用开发实战.第2版.pdf)</p>
+]]></content>
+      <categories>
+        <category>flask</category>
+      </categories>
+      <tags>
+        <tag>资源</tag>
+        <tag>PDF</tag>
+        <tag>flask</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Flask使用教程</title>
-    <url>/2025/04/11/Flask/</url>
+    <url>/2025/04/11/flask/</url>
     <content><![CDATA[<h1 id="Flask"><a href="#Flask" class="headerlink" title="Flask"></a>Flask</h1><p>Flask是一个用于web开发的微型框架，它具有一个包含基本服务的核心，其他功能可以通过扩展实现。</p>
 <p>Flask有三个依赖：路由，调试，和web服务器网关接口。</p>
 <h1 id="虚拟环境"><a href="#虚拟环境" class="headerlink" title="虚拟环境"></a>虚拟环境</h1><p>虚拟环境是python解释器的一个私有副本，可以避免安装的Python版本与系统预装的发生冲突，为每个项目单独创建虚拟环境，可以保证应用只能访问虚拟环境中的包，从而保持全局解释器的干净整洁，并且不需要管理员权限。</p>
@@ -141,7 +156,10 @@
 <p><code>capitalize</code> 会将字符串的首字母大写，<code>length</code> 会返回字符串的长度。</p>
 <p>模板进程</p>
 <p>在base.html中放置block，block的名称自定义</p>
-<p><img src="image-20250411102632968.png" alt="image-20250411102632968"></p>
+<img src="image-20250411102632968.png" alt="image-20250411102632968" style="zoom:67%;">
+
+
+
 <p>在index.html中继承base.tml，覆写block</p>
 <img src="image-20250411102708596.png" alt="image-20250411102708596" style="zoom:67%;">
 
@@ -151,10 +169,7 @@
 <p>render_template默认从templates文件夹下寻找内容</p>
 <p>如果父模板的block原本就有内容并且子模版想要追加而不是覆写，就需要使用super()</p>
 <p>base.html</p>
-<img src="image-20250411105504590.png" alt="image-20250411105504590">
-
-
-
+<p><img src="image-20250411105504590.png" alt="image-20250411105504590"></p>
 <p>child.html</p>
 <p><img src="image-20250411105510035.png" alt="image-20250411105510035"></p>
 <h2 id="自定义错误页面"><a href="#自定义错误页面" class="headerlink" title="自定义错误页面"></a>自定义错误页面</h2><p>@app.errorhandler是用来处理特定HTTP错误的装饰器</p>
@@ -275,8 +290,7 @@
 <p><img src="image-20250414110216232.png" alt="image-20250414110216232"></p>
 <h3 id="删除行"><a href="#删除行" class="headerlink" title="删除行"></a>删除行</h3><p><img src="image-20250414110237901.png" alt="image-20250414110237901"></p>
 <h3 id="查询行"><a href="#查询行" class="headerlink" title="查询行"></a>查询行</h3><p><img src="image-20250414110258608.png" alt="image-20250414110258608"></p>
-<img src="image-20250414110303640.png" alt="image-20250414110303640">
-
+<p><img src="image-20250414110303640.png" alt="image-20250414110303640"></p>
 <p><img src="image-20250414110348224.png" alt="image-20250414110348224"></p>
 <h2 id="集成python-shell"><a href="#集成python-shell" class="headerlink" title="集成python shell"></a>集成python shell</h2><p>避免重复导入数据库实例与模型，可以预先配置shell</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 自定义shell启动时自动导入的变量</span></span><br><span class="line"><span class="meta">@app.shell_context_processor</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">make_shell_context</span>():</span><br><span class="line"> <span class="keyword">return</span> <span class="built_in">dict</span>(db=db, User=User, Role=Role)</span><br></pre></td></tr></table></figure>
@@ -304,21 +318,6 @@
       </categories>
       <tags>
         <tag>flask</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Flask—教程-pdf</title>
-    <url>/2025/04/11/flask%E6%95%99%E7%A8%8B/</url>
-    <content><![CDATA[<p>Flask教程纸质资料</p>
-<p>👉 [点击查看 PDF 文件](.&#x2F;Flask Web开发：基于Python的Web应用开发实战.第2版.pdf)</p>
-]]></content>
-      <categories>
-        <category>flask</category>
-      </categories>
-      <tags>
-        <tag>flask</tag>
-        <tag>资源</tag>
-        <tag>PDF</tag>
       </tags>
   </entry>
   <entry>
