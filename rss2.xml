@@ -9,40 +9,8 @@
     <atom:link href="https://mingyuhzou.github.io/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>学海无涯，回头是岸</description>
-    <pubDate>Fri, 11 Apr 2025 06:08:50 GMT</pubDate>
+    <pubDate>Mon, 14 Apr 2025 05:37:59 GMT</pubDate>
     <generator>http://hexo.io/</generator>
-    
-    <item>
-      <title>Flask—教程-pdf</title>
-      <link>https://mingyuhzou.github.io/2025/04/11/flask%E6%95%99%E7%A8%8B/</link>
-      <guid>https://mingyuhzou.github.io/2025/04/11/flask%E6%95%99%E7%A8%8B/</guid>
-      <pubDate>Thu, 10 Apr 2025 16:00:00 GMT</pubDate>
-      
-        
-        
-      <description>&lt;p&gt;Flask教程纸质资料&lt;/p&gt;
-&lt;p&gt;👉 [点击查看 PDF 文件](.&amp;#x2F;Flask Web开发：基于Python的Web应用开发实战.第2版.pdf)&lt;/p&gt;
-</description>
-        
-      
-      
-      
-      <content:encoded><![CDATA[<p>Flask教程纸质资料</p><p>👉 [点击查看 PDF 文件](.&#x2F;Flask Web开发：基于Python的Web应用开发实战.第2版.pdf)</p>]]></content:encoded>
-      
-      
-      <category domain="https://mingyuhzou.github.io/categories/flask/">flask</category>
-      
-      
-      <category domain="https://mingyuhzou.github.io/tags/%E8%B5%84%E6%BA%90/">资源</category>
-      
-      <category domain="https://mingyuhzou.github.io/tags/PDF/">PDF</category>
-      
-      <category domain="https://mingyuhzou.github.io/tags/flask/">flask</category>
-      
-      
-      <comments>https://mingyuhzou.github.io/2025/04/11/flask%E6%95%99%E7%A8%8B/#disqus_thread</comments>
-      
-    </item>
     
     <item>
       <title>Flask使用教程</title>
@@ -72,29 +40,34 @@
     </item>
     
     <item>
-      <title>博客使用教程</title>
-      <link>https://mingyuhzou.github.io/2025/04/10/%E5%8D%9A%E5%AE%A2%E4%BD%BF%E7%94%A8/</link>
-      <guid>https://mingyuhzou.github.io/2025/04/10/%E5%8D%9A%E5%AE%A2%E4%BD%BF%E7%94%A8/</guid>
-      <pubDate>Thu, 10 Apr 2025 04:00:00 GMT</pubDate>
+      <title>Flask—教程-pdf</title>
+      <link>https://mingyuhzou.github.io/2025/04/11/flask%E6%95%99%E7%A8%8B/</link>
+      <guid>https://mingyuhzou.github.io/2025/04/11/flask%E6%95%99%E7%A8%8B/</guid>
+      <pubDate>Thu, 10 Apr 2025 16:00:00 GMT</pubDate>
       
         
         
-      <description>&lt;h1 id=&quot;创建&quot;&gt;&lt;a href=&quot;#创建&quot; class=&quot;headerlink&quot; title=&quot;创建&quot;&gt;&lt;/a&gt;创建&lt;/h1&gt;&lt;p&gt;文章创建在&lt;strong&gt;Blog&#92;source&#92;_posts&lt;/strong&gt;下&lt;/p&gt;
-&lt;h1 id=&quot;标签&quot;&gt;&lt;a href=&quot;#标签</description>
+      <description>&lt;p&gt;Flask教程纸质资料&lt;/p&gt;
+&lt;p&gt;👉 [点击查看 PDF 文件](.&amp;#x2F;Flask Web开发：基于Python的Web应用开发实战.第2版.pdf)&lt;/p&gt;
+</description>
         
       
       
       
-      <content:encoded><![CDATA[<h1 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h1><p>文章创建在<strong>Blog\source\_posts</strong>下</p><h1 id="标签"><a href="#标签" class="headerlink" title="标签"></a>标签</h1><p>每篇博客开头需要设置<strong>Front-matter</strong></p><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">title:</span> <span class="string">我的第一篇文章</span>               <span class="comment"># 标题</span></span><br><span class="line"><span class="attr">date:</span> <span class="number">2025-04-10 15:00:00</span>   <span class="comment"># 日期</span></span><br><span class="line"><span class="attr">excerpt:</span> <span class="string">这是一篇关于技术的文章。</span> <span class="comment"># 摘要</span></span><br><span class="line"><span class="attr">tags:</span>                              <span class="comment"># 标签</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">技术</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">编程</span></span><br><span class="line"><span class="attr">categories:</span>                        <span class="comment"># 类别</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">编程</span></span><br><span class="line">  </span><br><span class="line"> <span class="attr">top:</span> <span class="literal">true</span>                         <span class="comment"># 是否顶置</span></span><br></pre></td></tr></table></figure><h1 id="提交"><a href="#提交" class="headerlink" title="提交"></a>提交</h1><p>对博客属性做了修改，或者创建了文章后，提交</p><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo clean </span><br><span class="line">hexo g -d # 部署到远程</span><br></pre></td></tr></table></figure><p>可以在本地打开</p><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>]]></content:encoded>
+      <content:encoded><![CDATA[<p>Flask教程纸质资料</p><p>👉 [点击查看 PDF 文件](.&#x2F;Flask Web开发：基于Python的Web应用开发实战.第2版.pdf)</p>]]></content:encoded>
       
       
-      <category domain="https://mingyuhzou.github.io/categories/%E5%8D%9A%E5%AE%A2/">博客</category>
+      <category domain="https://mingyuhzou.github.io/categories/flask/">flask</category>
       
       
-      <category domain="https://mingyuhzou.github.io/tags/%E5%8D%9A%E5%AE%A2/">博客</category>
+      <category domain="https://mingyuhzou.github.io/tags/flask/">flask</category>
+      
+      <category domain="https://mingyuhzou.github.io/tags/%E8%B5%84%E6%BA%90/">资源</category>
+      
+      <category domain="https://mingyuhzou.github.io/tags/PDF/">PDF</category>
       
       
-      <comments>https://mingyuhzou.github.io/2025/04/10/%E5%8D%9A%E5%AE%A2%E4%BD%BF%E7%94%A8/#disqus_thread</comments>
+      <comments>https://mingyuhzou.github.io/2025/04/11/flask%E6%95%99%E7%A8%8B/#disqus_thread</comments>
       
     </item>
     
@@ -124,6 +97,33 @@
       
       
       <comments>https://mingyuhzou.github.io/2025/04/10/%E5%AF%B9%E6%8B%8D/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>博客使用教程</title>
+      <link>https://mingyuhzou.github.io/2025/04/10/%E5%8D%9A%E5%AE%A2%E4%BD%BF%E7%94%A8/</link>
+      <guid>https://mingyuhzou.github.io/2025/04/10/%E5%8D%9A%E5%AE%A2%E4%BD%BF%E7%94%A8/</guid>
+      <pubDate>Thu, 10 Apr 2025 04:00:00 GMT</pubDate>
+      
+        
+        
+      <description>&lt;h1 id=&quot;创建&quot;&gt;&lt;a href=&quot;#创建&quot; class=&quot;headerlink&quot; title=&quot;创建&quot;&gt;&lt;/a&gt;创建&lt;/h1&gt;&lt;p&gt;文章创建在&lt;strong&gt;Blog&#92;source&#92;_posts&lt;/strong&gt;下&lt;/p&gt;
+&lt;h1 id=&quot;标签&quot;&gt;&lt;a href=&quot;#标签</description>
+        
+      
+      
+      
+      <content:encoded><![CDATA[<h1 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h1><p>文章创建在<strong>Blog\source\_posts</strong>下</p><h1 id="标签"><a href="#标签" class="headerlink" title="标签"></a>标签</h1><p>每篇博客开头需要设置<strong>Front-matter</strong></p><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">title:</span> <span class="string">我的第一篇文章</span>               <span class="comment"># 标题</span></span><br><span class="line"><span class="attr">date:</span> <span class="number">2025-04-10 15:00:00</span>   <span class="comment"># 日期</span></span><br><span class="line"><span class="attr">excerpt:</span> <span class="string">这是一篇关于技术的文章。</span> <span class="comment"># 摘要</span></span><br><span class="line"><span class="attr">tags:</span>                              <span class="comment"># 标签</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">技术</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">编程</span></span><br><span class="line"><span class="attr">categories:</span>                        <span class="comment"># 类别</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">编程</span></span><br><span class="line">  </span><br><span class="line"> <span class="attr">top:</span> <span class="literal">true</span>                         <span class="comment"># 是否顶置</span></span><br></pre></td></tr></table></figure><h1 id="提交"><a href="#提交" class="headerlink" title="提交"></a>提交</h1><p>对博客属性做了修改，或者创建了文章后，提交</p><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo clean </span><br><span class="line">hexo g -d # 部署到远程</span><br></pre></td></tr></table></figure><p>可以在本地打开</p><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>]]></content:encoded>
+      
+      
+      <category domain="https://mingyuhzou.github.io/categories/%E5%8D%9A%E5%AE%A2/">博客</category>
+      
+      
+      <category domain="https://mingyuhzou.github.io/tags/%E5%8D%9A%E5%AE%A2/">博客</category>
+      
+      
+      <comments>https://mingyuhzou.github.io/2025/04/10/%E5%8D%9A%E5%AE%A2%E4%BD%BF%E7%94%A8/#disqus_thread</comments>
       
     </item>
     
