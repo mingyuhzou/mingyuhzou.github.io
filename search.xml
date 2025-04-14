@@ -141,10 +141,7 @@
 <p><code>capitalize</code> 会将字符串的首字母大写，<code>length</code> 会返回字符串的长度。</p>
 <p>模板进程</p>
 <p>在base.html中放置block，block的名称自定义</p>
-<img src="image-20250411102632968.png" alt="image-20250411102632968" style="zoom:67%;">
-
-
-
+<p><img src="image-20250411102632968.png" alt="image-20250411102632968"></p>
 <p>在index.html中继承base.tml，覆写block</p>
 <img src="image-20250411102708596.png" alt="image-20250411102708596" style="zoom:67%;">
 
