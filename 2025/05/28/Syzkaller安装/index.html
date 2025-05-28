@@ -349,8 +349,7 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">make -j$(nproc)<br></code></pre></td></tr></table></figure>
 
 <p>注意这里版本不能太低，否则执行make指令会出现下述错误，选择linux6.6不会出现问题</p>
-<img src="./../img/image-20250528083135579-1748396731607-2.png" srcset="/img/loading.gif" lazyload alt="image-20250528083135579" style="zoom:67%;" />
-
+<p><img src="/./../img/image-20250528083135579-1748396731607-2.png" srcset="/img/loading.gif" lazyload alt="image-20250528083135579"></p>
 <p>执行下述指令验证<strong>内核是否编译成功</strong></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">ls linux-6.6/vmlinux<br>ls linux-6.6/arch/x86/boot/bzImage<br></code></pre></td></tr></table></figure>
 
