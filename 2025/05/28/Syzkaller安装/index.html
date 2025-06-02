@@ -234,7 +234,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.8k 字
+          1.7k 字
         
       </span>
     
@@ -245,7 +245,7 @@
         
         
         
-          16 分钟
+          15 分钟
         
       </span>
     
@@ -301,27 +301,26 @@
 <p><img src="/./../img/image-20250526154409481-1748396731607-1.png" srcset="/img/loading.gif" lazyload alt="image-20250526154409481"></p>
 <p>Syzkaller由多个部件组成：</p>
 <ul>
-<li>syz-manager 总管中枢：管理整个模糊测试，启动&#x2F;停止虚拟机，收集 crash和coverage数据，提供 Web UI 展示测试进展和崩溃详情<ul>
+<li>syz-manager 总管中枢：管理整个模糊测试，启动&#x2F;停止虚拟机，收集 crash和coverage数据，提供Web UI展示测试进展和崩溃详情<ul>
 <li>解析配置文件json格式</li>
 <li>启动多个VM实例并通过SSH部署<code>syz-fuzzer</code>，</li>
 <li>收集VM回传的crash信息，保存日志、生成 repro（复现程序）</li>
 <li>自动保存工作状态到<code>workdir</code>目录，可断点续测</li>
 </ul>
 </li>
-<li>syz-fuzzer 模糊测试引擎：在每个VM内执行，负责生成syscall程序，把生成的程序传给executor执行</li>
+<li>syz-fuzzer 模糊测试引擎：根据目标架构定义，负责生成系统调用序列</li>
 <li>syz-executor syscall执行器： 在内核中运行syscall程序，收集执行的覆盖率数据，监控是否触发了异常</li>
 </ul>
+<p>SSH（Secure shell）是一种安全的远程登陆协议，用于通过网络安全地访问另一台计算机终端，在Syzkaller 中，SSH用于和被测虚拟机进行通信。</p>
 <p>执行过程如下：</p>
 <ol>
-<li>启动syz-manager：执行<code>./bin/syz-manager -config=config.json</code>，其中config.json定义了配置(也可以是cfg格式)</li>
-<li>启动虚拟机：syz-manager会启动一组VM实例，模拟被检测环境</li>
-<li>启动 syz-fuzzer 子进程：syz-manager为每个VM实例启动一个syz-fuzzer子进程，负责生成 syscall fuzz 程序，并通过 RPC 控制 VM 中的执行器。</li>
-<li>建立SSH连接：使用SSH登录VM，并把fuzzing所需的syz-executor上传进去</li>
-<li>开始模糊测试：虚拟机中运行syz-executor，根据从宿主机 <code>syz-manager</code> 下发的 syscall 程序和参数，不断调用各种系统调用</li>
-<li>Bug 反馈和处理：如果触发了崩溃（比如内核 oops&#x2F;panic），会通过日志、符号解析工具等分析出崩溃点，崩溃信息会通过RPC反馈给syz-manager</li>
+<li>启动syz-manager：执行<code>./bin/syz-manager -config=config.json</code>，其中config.json定义了配置(也可以是cfg格式)。</li>
+<li>启动虚拟机：syz-manager根据配置调用QEMU，模拟环境。</li>
+<li>建立SSH连接：使用SSH登录VM，并把fuzzing所需的syz-executor复制到VM中。</li>
+<li>运行syz-fuzzer：syz-manager自动启动多个syz-fuzzer进程，每个对应一个VM，syz-fuzzer生成系统调用程序</li>
+<li>运行syscall：syz-fuzzer将syscall程序传送给syz-executor，然后开始执行syscall</li>
+<li>数据收集</li>
 </ol>
-<p>syz-manager通过ssh调用syz-fuzzer，syz-fuzzer和syz-manager之间通过RPC进行通信。syz-fuzzer将输入传给syz-executor，从kernel中读取代码覆盖率信息。syz-executor执行syscall系统调用。</p>
-<p>SSH（Secure shell）是一种安全的远程登陆协议，用于通过网络安全地访问另一台计算机终端，在Syzkaller 中，SSH用于和被测虚拟机进行通信</p>
 <h2 id="安装过程"><a href="#安装过程" class="headerlink" title="安装过程"></a>安装过程</h2><p>选择环境<strong>VMware+Ubuntu</strong> ，<a target="_blank" rel="noopener" href="https://github.com/google/syzkaller/blob/master/docs/linux/setup_ubuntu-host_qemu-vm_x86-64-kernel.md">官方文档</a></p>
 <h3 id="前置"><a href="#前置" class="headerlink" title="前置"></a>前置</h3><p>下载go语言编译器，版本需要&gt;&#x3D; 1.16 </p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs shell">wget https://dl.google.com/go/go1.22.3.linux-amd64.tar.gz<br>tar -xf go1.22.3.linux-amd64.tar.gz<br>mv go go1.22.3<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">设置环境变量</span><br>echo &#x27;export GOROOT=$HOME/run1/go1.22.3&#x27; &gt;&gt; ~/.bashrc<br>echo &#x27;export PATH=$GOROOT/bin:$PATH&#x27; &gt;&gt; ~/.bashrc<br><span class="hljs-meta prompt_"># </span><span class="language-bash">生效</span><br>source ~/.bashrc<br><span class="hljs-meta prompt_"># </span><span class="language-bash">检查是否安装成功</span><br>go version<br></code></pre></td></tr></table></figure>
@@ -365,7 +364,8 @@
 
 
 
-<p>配置网络接口并启动SSH服务，设置rc.local</p>
+<p>编写<code>rc.local</code>，这是Linux系统中一个<strong>用于开机时自动执行自定义命令</strong>的脚本文件。</p>
+<p>这里编写脚本用于<strong>启动虚拟机时自动完成网络配置并启动SSH服务</strong></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo mkdir -p /mnt/vm<br>sudo mount -o loop /home/ming/run/stretch-img/bullseye.img /mnt/vm<br>cd /mnt/vm<br>sudo nano etc/rc.local<br><br>cd ..<br>sudo umount /mnt/vm<br></code></pre></td></tr></table></figure>
 
 <p>填入</p>
@@ -414,7 +414,7 @@
 <p>其中rc.local</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo mkdir -p /mnt/vm<br>sudo mount -o loop /home/ming/run/stretch-img/bullseye.img /mnt/vm<br>cd /mnt/vm<br>sudo nano etc/rc.local<br><br>cd ..<br>sudo umount /mnt/vm<br></code></pre></td></tr></table></figure>
 
-<p>填入，其实只要修改eht0为enp0s4即可</p>
+<p>填入，其实只要修改eth0为enp0s4即可</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">#</span><span class="language-bash">!/bin/sh -e</span><br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">使用 logger 输出信息到系统日志</span><br>logger &quot;Running /etc/rc.local&quot;<br><br>echo &quot;[rc.local] Available interfaces:&quot; | tee /dev/console<br>ip a | tee /dev/console<br><br>ip link set enp0s4 up<br>ip addr flush dev enp0s4<br>ip addr add 10.0.2.15/24 dev enp0s4<br>ip route add default via 10.0.2.2<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">启动 SSH 服务</span><br>logger &quot;Starting SSH service...&quot;<br>/etc/init.d/ssh start<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">输出结束</span><br>logger &quot;rc.local execution finished.&quot;<br><br>exit 0<br></code></pre></td></tr></table></figure>
 
 
@@ -534,9 +534,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/05/29/AtCoder%20Beginner%20Contest%20407%20%E9%A2%98%E8%A7%A3%20A-E/" title="AtCoder Beginner Contest 407 题解">
+                      <a href="/2025/05/29/%E4%BF%9D%E7%A0%94%E6%B5%81%E6%B0%B4%E8%B4%A6/" title="四非保研流水账">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">AtCoder Beginner Contest 407 题解</span>
+                        <span class="hidden-mobile">四非保研流水账</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
