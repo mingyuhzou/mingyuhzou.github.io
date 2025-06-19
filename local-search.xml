@@ -5,6 +5,35 @@
   
   <entry>
     <title>AtCoder Beginner Contest 409 补题</title>
+    <link href="/2025/06/19/AtCoder%20Beginner%20Contest%20410%20%E8%A1%A5%E9%A2%98%20/"/>
+    <url>/2025/06/19/AtCoder%20Beginner%20Contest%20410%20%E8%A1%A5%E9%A2%98%20/</url>
+    
+    <content type="html"><![CDATA[<h1 id="AtCoder-Beginner-Contest-410"><a href="#AtCoder-Beginner-Contest-410" class="headerlink" title="AtCoder Beginner Contest 410"></a><a href="https://atcoder.jp/contests/abc410">AtCoder Beginner Contest 410</a></h1><h2 id="Battles-in-a-Row"><a href="#Battles-in-a-Row" class="headerlink" title="Battles in a Row"></a><a href="https://atcoder.jp/contests/abc410/tasks/abc410_e">Battles in a Row</a></h2><p><img src="/./D:/algorithm/assets/image-20250619143827595.png" alt="image-20250619143827595"></p><p>显而易见的动态规划，但是这里一定要维护的状态太多，数据范围一定会超，一定要去掉一个状态才能满足给定的数据范围求解。</p><p>根据题意，击败的怪兽一定是从头开始连续的一段，并且求解的是能击败的怪兽数，那么定义dp[i][j]表示体力和魔力为i和j的情况下，能击败的最多的怪兽数，DP的结果可以指出要访问的是数组的哪一位，如果do[i][j]&#x3D;x，那么对于当前状态，第x+1个怪兽的数值假设为x,y，那么dp[i+x][j]&#x3D;dp[i][j]+1，dp[i][j+y]&#x3D;dp[i][j]+1，初始时显然有dp[0][0]&#x3D;0</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs python">k,m,n=RR()<br>f=[[<span class="hljs-number">0</span>]*(n+<span class="hljs-number">1</span>) <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(m+<span class="hljs-number">1</span>)]<br><br>nums=[]<br><span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(k):<br>    nums.append(RR())<br><br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(m+<span class="hljs-number">1</span>):<br>    <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(n+<span class="hljs-number">1</span>):<br>        <span class="hljs-keyword">if</span> i:f[i][j]=<span class="hljs-built_in">max</span>(f[i][j],f[i-<span class="hljs-number">1</span>][j])<br>        <span class="hljs-keyword">if</span> j:f[i][j]=<span class="hljs-built_in">max</span>(f[i][j],f[i][j-<span class="hljs-number">1</span>])<br>        x=f[i][j]   <br><br>        <span class="hljs-keyword">if</span> x&lt;k:<br>            l,r=nums[x]<br>            <span class="hljs-keyword">if</span> i+l&lt;=m:f[i+l][j]=<span class="hljs-built_in">max</span>(f[i+l][j],f[i][j]+<span class="hljs-number">1</span>)<br>            <span class="hljs-keyword">if</span> j+r&lt;=n:f[i][j+r]=<span class="hljs-built_in">max</span>(f[i][r+j],f[i][j]+<span class="hljs-number">1</span>)<br><br><span class="hljs-built_in">print</span>(f[m][n])<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>算法</category>
+      
+      <category>AtCoder</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>动态规划</tag>
+      
+      <tag>二维</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>AtCoder Beginner Contest 409 补题</title>
     <link href="/2025/06/12/AtCoder%20Beginner%20Contest%20409%20%E8%A1%A5%E9%A2%98%20/"/>
     <url>/2025/06/12/AtCoder%20Beginner%20Contest%20409%20%E8%A1%A5%E9%A2%98%20/</url>
     
