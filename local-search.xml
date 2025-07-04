@@ -4,9 +4,9 @@
   
   
   <entry>
-    <title>AtCoder Beginner Contest 409 补题</title>
-    <link href="/2025/06/19/AtCoder%20Beginner%20Contest%20411%20%E8%A1%A5%E9%A2%98%20/"/>
-    <url>/2025/06/19/AtCoder%20Beginner%20Contest%20411%20%E8%A1%A5%E9%A2%98%20/</url>
+    <title>AtCoder Beginner Contest 411 补题</title>
+    <link href="/2025/06/25/AtCoder%20Beginner%20Contest%20411%20%E8%A1%A5%E9%A2%98%20/"/>
+    <url>/2025/06/25/AtCoder%20Beginner%20Contest%20411%20%E8%A1%A5%E9%A2%98%20/</url>
     
     <content type="html"><![CDATA[<h1 id="AtCoder-Beginner-Contest-411"><a href="#AtCoder-Beginner-Contest-411" class="headerlink" title="AtCoder Beginner Contest 411"></a><a href="https://atcoder.jp/contests/abc411">AtCoder Beginner Contest 411</a></h1><h2 id="Conflict-2"><a href="#Conflict-2" class="headerlink" title="Conflict 2"></a><a href="https://atcoder.jp/contests/abc411/tasks/abc411_d">Conflict 2</a></h2><p><img src="/./assets/image-20250704141515992-1751609745563-2.png" alt="image-20250704141515992"></p><p><img src="/./assets/image-20250704141526966-1751609745563-3.png" alt="image-20250704141526966"></p><p>本题中需要不断替换字符串，但又要确保字符串不能是引用类型防止字符被修改被覆盖，因此需要不断拷贝字符串。这个过程一定会超时，因此考虑使用链表，用指针指向真正的数据，每次修改时只需移动指针。</p><p>具体过程如下：</p><ul><li>操作1：创建一个节点，该节点的头指针指向服务器节点</li><li>操作2：创建一个新节点，该节点头指针指向原先的节点，尾节点指向新的字符串</li><li>操作3：服务器节点设置为对应的pc节点</li></ul><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs python">n,q=RR()<br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Node</span>:<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self,p=<span class="hljs-literal">None</span>,nx=<span class="hljs-literal">None</span></span>):<br>        <span class="hljs-variable language_">self</span>.pre=p<br>        <span class="hljs-variable language_">self</span>.nx=nx  <br><span class="hljs-comment"># 维护每台电脑对应的节点</span><br>p=[<span class="hljs-literal">None</span>]*n<br><span class="hljs-comment"># 服务器节点</span><br>s=<span class="hljs-literal">None</span> <br><span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(q):<br>    tmp=RLS()<br>    <span class="hljs-keyword">if</span> tmp[<span class="hljs-number">0</span>]==<span class="hljs-string">&#x27;1&#x27;</span>:<br>        idx=<span class="hljs-built_in">int</span>(tmp[<span class="hljs-number">1</span>])-<span class="hljs-number">1</span><br>        <span class="hljs-comment"># 创建新的节点，头指针指向服务器节点</span><br>        p[idx]=Node(s)<br>    <span class="hljs-keyword">elif</span> tmp[<span class="hljs-number">0</span>]==<span class="hljs-string">&#x27;2&#x27;</span>:<br>        idx=<span class="hljs-built_in">int</span>(tmp[<span class="hljs-number">1</span>])-<span class="hljs-number">1</span><br>        <span class="hljs-comment"># 创建新节点，拼接两个值</span><br>        p[idx]=Node((<span class="hljs-string">&#x27;&#x27;</span> <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> p[idx] <span class="hljs-keyword">else</span> p[idx]),tmp[-<span class="hljs-number">1</span>])<br>    <span class="hljs-keyword">else</span>:<br>        idx=<span class="hljs-built_in">int</span>(tmp[<span class="hljs-number">1</span>])-<span class="hljs-number">1</span><br>        <span class="hljs-comment"># 修改服务器所对的节点</span><br>        s=p[idx]<br><br><span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> s:<span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;&#x27;</span>)<br><span class="hljs-keyword">else</span>:<br>    <span class="hljs-comment"># 遍历链表，拼接字符串</span><br>    ans=deque()<br>    <span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:<br>        <span class="hljs-keyword">if</span> s.nx:ans.appendleft(s.nx)<br>        <span class="hljs-keyword">if</span> <span class="hljs-built_in">isinstance</span>(s.pre,Node):<br>            s=s.pre<br>        <span class="hljs-keyword">else</span>:<br>            <span class="hljs-keyword">if</span> s.pre:ans.appendleft(s.pre)<br>            <span class="hljs-keyword">break</span><br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;&#x27;</span>.join(ans))<br></code></pre></td></tr></table></figure>]]></content>
     
@@ -22,9 +22,9 @@
     
     <tags>
       
-      <tag>动态规划</tag>
+      <tag>数据结构</tag>
       
-      <tag>二维</tag>
+      <tag>链表</tag>
       
     </tags>
     
@@ -80,9 +80,9 @@
     
     <tags>
       
-      <tag>并查集</tag>
-      
       <tag>几何</tag>
+      
+      <tag>并查集</tag>
       
       <tag>暴力</tag>
       
@@ -111,9 +111,9 @@
     
     <tags>
       
-      <tag>线段树</tag>
-      
       <tag>并查集</tag>
+      
+      <tag>线段树</tag>
       
       <tag>位运算</tag>
       
