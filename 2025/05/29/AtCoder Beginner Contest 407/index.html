@@ -1,0 +1,874 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="nndjxh">
+  <meta name="keywords" content="编程">
+  
+    <meta name="description" content="本文是AtCoder Beginner Contest 407的题解合集，详细讲解了 A-E 各题的解题思路和实现，适合算法竞赛初中级选手阅读学习。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AtCoder Beginner Contest 407 题解">
+<meta property="og:url" content="http://example.com/2025/05/29/AtCoder%20Beginner%20Contest%20407/index.html">
+<meta property="og:site_name" content="nndjxh个人博客">
+<meta property="og:description" content="本文是AtCoder Beginner Contest 407的题解合集，详细讲解了 A-E 各题的解题思路和实现，适合算法竞赛初中级选手阅读学习。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/Atcode.png">
+<meta property="article:published_time" content="2025-05-29T02:00:00.000Z">
+<meta property="article:modified_time" content="2025-05-29T02:05:00.000Z">
+<meta property="article:author" content="Jnndjxh">
+<meta property="article:tag" content="贪心">
+<meta property="article:tag" content="括号序列">
+<meta property="article:tag" content="枚举">
+<meta property="article:tag" content="状压">
+<meta property="article:tag" content="DFS">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/img/Atcode.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>AtCoder Beginner Contest 407 题解 - nndjxh个人博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="AtCoder Beginner Contest 407 题解"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        nndjxh
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-05-29 10:00" pubdate>
+          2025年5月29日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          10 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">AtCoder Beginner Contest 407 题解</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="AtCoder-Beginner-Contest-407"><a href="#AtCoder-Beginner-Contest-407" class="headerlink" title="AtCoder Beginner Contest 407"></a><a target="_blank" rel="noopener" href="https://atcoder.jp/contests/abc407">AtCoder Beginner Contest 407</a></h1><h2 id="A-Approximation"><a href="#A-Approximation" class="headerlink" title="A-Approximation"></a>A-Approximation</h2><p><strong>题意</strong>：</p>
+<p>给定一个正整数 $A$ 和一个正的奇整数 $B$，求一个整数，使它与 $\frac{A}{B}$ 的差最小。可以证明，在题目约束下，这样的整数是唯一的。</p>
+<p><strong>数据范围</strong> </p>
+<p><img src="/./../img/image-20250529165538178-1748509237806-1.png" srcset="/img/loading.gif" lazyload alt="image-20250529165538178"></p>
+<p><strong>输入</strong></p>
+<p><img src="/./../img/image-20250529165549365-1748509237807-2.png" srcset="/img/loading.gif" lazyload alt="image-20250529165549365"></p>
+<p><strong>题解：</strong></p>
+<p>对于给定的数据范围直接暴力枚举每一个即可</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python">n,odd=RR()<br>a,b=<span class="hljs-built_in">int</span>(n/odd),ceil(n/odd)<br><span class="hljs-keyword">if</span> <span class="hljs-built_in">abs</span>(n/odd-a)&lt;<span class="hljs-built_in">abs</span>(n/odd-b):<br>    <span class="hljs-built_in">print</span>(a)<br><span class="hljs-keyword">else</span>:<br>    <span class="hljs-built_in">print</span>(b)<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="B-P-X-or-Y"><a href="#B-P-X-or-Y" class="headerlink" title="B - P(X or Y)"></a>B - P(X or Y)</h2><p><strong>题意</strong>：</p>
+<p> 投掷两个六面骰子（点数分别是 1 到 6），求这两个点数的组合中，有多少种满足如下两个条件之一的情形，并计算其概率：</p>
+<ul>
+<li>两个点数之和 <strong>不小于</strong> $X$；</li>
+<li>两个点数之差的绝对值 <strong>不小于</strong> $Y$。<br> 两个骰子相互独立，且每个面出现的概率相等。</li>
+</ul>
+<p><strong>数据范围</strong>：</p>
+<p><img src="/./../img/image-20250529165456078-1748509237807-4.png" srcset="/img/loading.gif" lazyload alt="image-20250529165456078"></p>
+<p><strong>输入</strong></p>
+<p><img src="/./../img/image-20250529165507588-1748509237807-6.png" srcset="/img/loading.gif" lazyload alt="image-20250529165507588"></p>
+<p><strong>题解：</strong></p>
+<p>同样，对于给定的数据范围直接看枚举即可</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python">total=ans=<span class="hljs-number">0</span><br>x,y=RR()<br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>,<span class="hljs-number">7</span>):<br>    <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>,<span class="hljs-number">7</span>):<br>        total+=<span class="hljs-number">1</span><br>        <span class="hljs-keyword">if</span> <span class="hljs-built_in">abs</span>(i-j)&gt;=y <span class="hljs-keyword">or</span> i+j&gt;=x:<br>            ans+=<span class="hljs-number">1</span><br><span class="hljs-built_in">print</span>(ans/total)<br></code></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="C-Security-2"><a href="#C-Security-2" class="headerlink" title="C - Security 2"></a>C - Security 2</h2><p><strong>题意</strong>：</p>
+<p>在 AtCoder 公司门口有一个密码输入装置，包含一个屏幕和两个按钮。屏幕上显示一个字符串 $t$，初始为空串。按钮的功能如下：</p>
+<ul>
+<li>按下按钮 A：在当前字符串末尾添加一个 <code>0</code>；</li>
+<li>按下按钮 B：将字符串中的每一位数字都加 1（<code>9</code> 变为 <code>0</code>，即按模 10 循环）。</li>
+</ul>
+<p>给定目标字符串 $S$，从空字符串开始，通过若干次按键，使得屏幕显示的字符串变为 $S$。请计算所需的最少按键次数。</p>
+<p><strong>数据范围</strong>：</p>
+<p><img src="/./../img/image-20250529165429353-1748509237807-3.png" srcset="/img/loading.gif" lazyload alt="image-20250529165429353"></p>
+<p><strong>输入</strong></p>
+<p><img src="/./../img/image-20250529165439227-1748509237807-5.png" srcset="/img/loading.gif" lazyload alt="image-20250529165439227"></p>
+<p><strong>题解：</strong></p>
+<p>直接模拟做不要多想，从后往前考虑，最后一个位置一定要操作nums[-1]次，在操作的过程中前面的位置也一定会出现被连带着操作，因此累加操作次数cur，然后继续向前遍历即可。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs python">s=RS()<br>n=<span class="hljs-built_in">len</span>(s)<br>cur=ans=<span class="hljs-number">0</span><br><br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(n-<span class="hljs-number">1</span>,-<span class="hljs-number">1</span>,-<span class="hljs-number">1</span>):<br>    c=<span class="hljs-built_in">int</span>(s[i])<br>    c=(c-cur)%<span class="hljs-number">10</span><br>    ans+=c+<span class="hljs-number">1</span> <span class="hljs-comment"># 加一是因为在末尾添加一个0</span><br>    cur+=c<br><span class="hljs-built_in">print</span>(ans)<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="D-Domino-Covering-XOR"><a href="#D-Domino-Covering-XOR" class="headerlink" title="D - Domino Covering XOR"></a>D - Domino Covering XOR</h2><p><strong>题意</strong>：</p>
+<p>给定一个 $H \times W$ 的网格，每个格子 $(i, j)$ 上有一个非负整数 $A_{i,j}$。你可以在网格上放置若干个多米诺骨牌，每个骨牌覆盖两个相邻的格子（只能是左右相邻或上下相邻），且每个格子至多被一个骨牌覆盖。</p>
+<p>定义得分为<strong>没有被任何骨牌覆盖的格子中的所有整数的按位异或值（XOR）</strong>。</p>
+<p>求最大可能得分。</p>
+<p><strong>数据范围</strong>：</p>
+<p><img src="/./../img/image-20250529165332698-1748509237807-7.png" srcset="/img/loading.gif" lazyload alt="image-20250529165332698"></p>
+<p><strong>输入</strong></p>
+<p><img src="/./../img/image-20250529165413391-1748509237807-10.png" srcset="/img/loading.gif" lazyload alt="image-20250529165413391"></p>
+<p><strong>题解：</strong></p>
+<p>一开始这个数据范围没多想就直接上状压DP了，后来样例过不了才反应过来异或值怎么能返回最大</p>
+<p>本题应当使用DFS，直接暴力搜索每个位置是否放骨牌，直接暴力也不行要把每个位置是否选过的状态压缩，不能用集合</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs python">m,n=RR()<br>g=[]<br><span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(m):<br>    g.extend(RR())<br><br>ans=<span class="hljs-number">0</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">dfs</span>(<span class="hljs-params">pos,s</span>):<br>    <span class="hljs-keyword">global</span> ans<br>    <span class="hljs-keyword">if</span> pos==n*m:<br>        res=<span class="hljs-number">0</span><br>        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(n*m):<br>            <span class="hljs-keyword">if</span> (s&gt;&gt;i)&amp;<span class="hljs-number">1</span>==<span class="hljs-number">0</span>:<br>                res^=g[i]<br>        ans=<span class="hljs-built_in">max</span>(ans,res)<br>        <span class="hljs-keyword">return</span>  <br>    <span class="hljs-keyword">if</span> (s&gt;&gt;pos)&amp;<span class="hljs-number">1</span>:<br>        dfs(pos+<span class="hljs-number">1</span>,s)<br>        <span class="hljs-keyword">return</span> <br>    dfs(pos+<span class="hljs-number">1</span>,s)<br>    x,y=<span class="hljs-built_in">divmod</span>(pos,n)<br>    <span class="hljs-keyword">for</span> dx,dy <span class="hljs-keyword">in</span> (<span class="hljs-number">1</span>,<span class="hljs-number">0</span>),(<span class="hljs-number">0</span>,<span class="hljs-number">1</span>):<br>        <span class="hljs-keyword">if</span> <span class="hljs-number">0</span>&lt;=(i:=dx+x)&lt;m <span class="hljs-keyword">and</span> <span class="hljs-number">0</span>&lt;=(j:=dy+y)&lt;n:<br>            nx=i*n+j<br>            <span class="hljs-keyword">if</span> s&gt;&gt;nx&amp;<span class="hljs-number">1</span>==<span class="hljs-number">0</span>:<br>                dfs(pos+<span class="hljs-number">1</span>,s|(<span class="hljs-number">1</span>&lt;&lt;nx)|(<span class="hljs-number">1</span>&lt;&lt;pos))<br><br>dfs(<span class="hljs-number">0</span>,<span class="hljs-number">0</span>)<br><span class="hljs-built_in">print</span>(ans)<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="E-Most-Valuable-Parentheses"><a href="#E-Most-Valuable-Parentheses" class="headerlink" title="E - Most Valuable Parentheses"></a>E - Most Valuable Parentheses</h2><p><strong>题意</strong>：</p>
+<p>给定一个长度为 $2N$ 的非负整数序列 $A &#x3D; (A_1, A_2, \dots, A_{2N})$。</p>
+<p>定义括号序列 $s$ 的得分方式如下：</p>
+<ul>
+<li>对于 $s$ 中每一个为右括号 <code>)</code> 的位置 $i$，将 $A_i$ 设为 0，最后对所有 $A$ 中的数求和，得到得分。</li>
+</ul>
+<p>现在请你找出一个<strong>合法的括号序列</strong> $s$（即左右括号配对匹配）使得这个得分最大。</p>
+<p>一共 $T$ 个测试用例，分别求解。</p>
+<p><strong>数据范围</strong>：</p>
+<p><img src="/./../img/image-20250529165312314-1748509237807-8.png" srcset="/img/loading.gif" lazyload alt="image-20250529165312314"></p>
+<p><strong>输入</strong></p>
+<p><img src="/./../img/image-20250529165255354-1748509237807-9.png" srcset="/img/loading.gif" lazyload alt="image-20250529165255354"></p>
+<p><strong>题解：</strong></p>
+<p>本题用到了括号序列的经典结论，即如果令左括号为1，右括号为-1，那么对于一个合法的括号序列，它的每个前缀值都大于等于0，且最终和为0。</p>
+<p>那么对于本题有：对于i位置，需要满足右括号的个数不超过<code>i//2</code>，但是最终右括号的的个数应该是n&#x2F;&#x2F;2。</p>
+<p>因此这里维护最小的n&#x2F;&#x2F;2个右括号的，遍历的过程中将遇到的元素放入最大堆(保证最终由n&#x2F;&#x2F;2个右括号)，一旦堆的大小超过了<code>i//2</code>那么就弹出最大值(保证左括号和最大)。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(R()):<br>    n=R()<br>    nums=[R() <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">2</span>*n)]<br>    h=[]<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">2</span>*n):<br>        c=(i+<span class="hljs-number">1</span>)//<span class="hljs-number">2</span><br>        heappush(h,-nums[i])<br>        <span class="hljs-keyword">while</span> <span class="hljs-built_in">len</span>(h)&gt;c:<br>            heappop(h)<br>    <span class="hljs-built_in">print</span>(<span class="hljs-built_in">sum</span>(nums)+<span class="hljs-built_in">sum</span>(h))<br></code></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%AE%97%E6%B3%95/" class="category-chain-item">算法</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%AE%97%E6%B3%95/AtCoder/" class="category-chain-item">AtCoder</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E8%B4%AA%E5%BF%83/" class="print-no-link">#贪心</a>
+      
+        <a href="/tags/%E6%8B%AC%E5%8F%B7%E5%BA%8F%E5%88%97/" class="print-no-link">#括号序列</a>
+      
+        <a href="/tags/%E6%9E%9A%E4%B8%BE/" class="print-no-link">#枚举</a>
+      
+        <a href="/tags/%E7%8A%B6%E5%8E%8B/" class="print-no-link">#状压</a>
+      
+        <a href="/tags/DFS/" class="print-no-link">#DFS</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>AtCoder Beginner Contest 407 题解</div>
+      <div>http://example.com/2025/05/29/AtCoder Beginner Contest 407/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>nndjxh</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年5月29日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/06/01/%E4%BF%9D%E7%A0%94%E6%B5%81%E6%B0%B4%E8%B4%A6/" title="四非保研流水账">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">四非保研流水账</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/05/28/Syzkaller%E5%AE%89%E8%A3%85/" title="安装 Syzkaller（Linux 内核模糊测试工具）">
+                        <span class="hidden-mobile">安装 Syzkaller（Linux 内核模糊测试工具）</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.utils.listenDOMLoaded(function() {
+      Fluid.events.registerRefreshCallback(function() {
+        if ('mermaid' in window) {
+          mermaid.init();
+        }
+      });
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      京ICP证123456号
+    </a>
+  </span>
+  
+    
+      <span>
+        <a
+          href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=12345678"
+          rel="nofollow noopener"
+          class="beian-police"
+          target="_blank"
+        >
+          
+            <span style="visibility: hidden; width: 0">|</span>
+            <img src="/img/police_beian.png" srcset="/img/loading.gif" lazyload alt="police-icon"/>
+          
+          <span>京公网安备12345678号</span>
+        </a>
+      </span>
+    
+  
+</div>
+
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
