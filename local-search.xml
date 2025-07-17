@@ -4,6 +4,35 @@
   
   
   <entry>
+    <title>AtCoder Beginner Contest 414 补题</title>
+    <link href="/2025/07/17/AtCoder%20Beginner%20Contest%20414/"/>
+    <url>/2025/07/17/AtCoder%20Beginner%20Contest%20414/</url>
+    
+    <content type="html"><![CDATA[<h1 id="AtCoder-Beginner-Contest-414"><a href="#AtCoder-Beginner-Contest-414" class="headerlink" title="AtCoder Beginner Contest 414"></a><a href="https://atcoder.jp/contests/abc414">AtCoder Beginner Contest 414</a></h1><p><img src="/./../img/image-20250717204553569.png" alt="image-20250717204553569"></p><p>根据题意，只需枚举ab即可求出c，同时为了满足abc不同，且在[1,N]的范围内必须有a要大于b，且a不能是b的倍数，那么有对于b它可以贡献的答案是n-(b-1)-n&#x2F;&#x2F;b即减去小于b的部分和b的倍。这里n-(b-1)可以O(1)计算出，但是n&#x2F;&#x2F;b需要使用数论分块才能对于给定的数据范围求解</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs python">mod=<span class="hljs-number">998244353</span><br>n=R()<br><span class="hljs-comment"># 首先计算固定的部分</span><br>total=((n*(n-<span class="hljs-number">1</span>))%mod+(n-<span class="hljs-number">1</span>)-(n+<span class="hljs-number">2</span>)*(n-<span class="hljs-number">1</span>)//<span class="hljs-number">2</span>)%mod<br><span class="hljs-comment"># b需要从2开始</span><br>l=<span class="hljs-number">2</span><br>res=<span class="hljs-number">0</span><br><span class="hljs-comment"># 不断求解</span><br><span class="hljs-keyword">while</span> l&lt;=n:<br>    r=n//(n//l)<br>    res+=(r-l+<span class="hljs-number">1</span>)*(n//l)<br>    res%=mod<br>    l=r+<span class="hljs-number">1</span><br><span class="hljs-built_in">print</span>((total-res)%mod)<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>算法</category>
+      
+      <category>AtCoder</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>数学</tag>
+      
+      <tag>数论分块</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Leetcode 458 补题</title>
     <link href="/2025/07/13/Leetcode%20458/"/>
     <url>/2025/07/13/Leetcode%20458/</url>
@@ -171,9 +200,9 @@
     
     <tags>
       
-      <tag>几何</tag>
-      
       <tag>并查集</tag>
+      
+      <tag>几何</tag>
       
       <tag>暴力</tag>
       
@@ -202,9 +231,9 @@
     
     <tags>
       
-      <tag>并查集</tag>
-      
       <tag>线段树</tag>
+      
+      <tag>并查集</tag>
       
       <tag>位运算</tag>
       
