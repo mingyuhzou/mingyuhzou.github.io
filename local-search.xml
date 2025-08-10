@@ -4,6 +4,93 @@
   
   
   <entry>
+    <title>AtCoder Beginner Contest 417 vp</title>
+    <link href="/2025/08/10/AtCoder%20Beginner%20Contest%20417/"/>
+    <url>/2025/08/10/AtCoder%20Beginner%20Contest%20417/</url>
+    
+    <content type="html"><![CDATA[<h1 id="AtCoder-Beginner-Contest-417"><a href="#AtCoder-Beginner-Contest-417" class="headerlink" title="AtCoder Beginner Contest 417"></a><a href="https://atcoder.jp/contests/abc417">AtCoder Beginner Contest 417</a></h1><h2 id="Development-有修改floyd"><a href="#Development-有修改floyd" class="headerlink" title="Development(有修改floyd)"></a><a href="https://atcoder.jp/contests/abc416/tasks/abc416_e">Development(有修改floyd)</a></h2><p><img src="/./../img/image-20250810165737165.png" alt="image-20250810165737165"></p><p><img src="/./../img/image-20250810165745882.png" alt="image-20250810165745882"></p><p>观察本题的数据范围，可以发现，对于小于等于1000的初始值无论如何变化一定不会大于1000——因为每次增减的值都控制在500以内，小于等于500时会增大，大于则会减小，因此只要初始值小于等于1000就可以结合N的范围求解。令f[i][j]为心情值为j，在第i个值时最终的心情值，递推关系十分明显。如果初始心情大于1000，那么一定会不断减小直到&lt;&#x3D;1000，可以通过前缀和快速求解得到对应的位置。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs python">n=R()<br>nums=[RR() <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(n)]<br>b=[x[-<span class="hljs-number">1</span>] <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> nums]<br><span class="hljs-comment"># 前缀和</span><br>pre=get_pre(b)<br><br><span class="hljs-comment"># 动态规划</span><br>f=[[inf]*<span class="hljs-number">1010</span> <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(n)]<br><br><span class="hljs-comment"># 预处理</span><br><span class="hljs-keyword">for</span> p <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1010</span>):<br>    <span class="hljs-keyword">if</span> p&lt;=nums[-<span class="hljs-number">1</span>][<span class="hljs-number">0</span>]:<br>        f[-<span class="hljs-number">1</span>][p]=p+nums[-<span class="hljs-number">1</span>][<span class="hljs-number">1</span>]<br>    <span class="hljs-keyword">else</span>:<br>        f[-<span class="hljs-number">1</span>][p]=<span class="hljs-built_in">max</span>(<span class="hljs-number">0</span>,p-nums[-<span class="hljs-number">1</span>][<span class="hljs-number">2</span>])<br><span class="hljs-comment"># 递推</span><br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(n-<span class="hljs-number">2</span>,-<span class="hljs-number">1</span>,-<span class="hljs-number">1</span>):<br>    <span class="hljs-keyword">for</span> p <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1010</span>):<br>        <span class="hljs-keyword">if</span> p&lt;=nums[i][<span class="hljs-number">0</span>]:<br>            f[i][p]=f[i+<span class="hljs-number">1</span>][p+nums[i][<span class="hljs-number">1</span>]]<br>        <span class="hljs-keyword">else</span>:<br>            f[i][p]=f[i+<span class="hljs-number">1</span>][<span class="hljs-built_in">max</span>(<span class="hljs-number">0</span>,p-nums[i][<span class="hljs-number">2</span>])]<br><br><span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(R()):<br>    x=R()<br>    idx=<span class="hljs-number">0</span><br>    <span class="hljs-comment"># 大于，查找什么时候会小于等于1000</span><br>    <span class="hljs-keyword">if</span> x&gt;<span class="hljs-number">1000</span>:<br>        idx=bisect_left(pre,x-<span class="hljs-number">1000</span>)<br>        <span class="hljs-comment"># 太大了会一直减小，直接特判求解</span><br>        <span class="hljs-keyword">if</span> idx&gt;=n:<br>            <span class="hljs-built_in">print</span>(x-pre[-<span class="hljs-number">1</span>])<br>            <span class="hljs-keyword">continue</span><br>        x-=pre[idx]<br>    ans=f[idx][x]<br>    <span class="hljs-built_in">print</span>(ans)<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>算法</category>
+      
+      <category>AtCoder</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>动态规划</tag>
+      
+      <tag>trick</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>AtCoder Beginner Contest 416 vp</title>
+    <link href="/2025/08/09/AtCoder%20Beginner%20Contest%20416/"/>
+    <url>/2025/08/09/AtCoder%20Beginner%20Contest%20416/</url>
+    
+    <content type="html"><![CDATA[<h1 id="AtCoder-Beginner-Contest-416"><a href="#AtCoder-Beginner-Contest-416" class="headerlink" title="AtCoder Beginner Contest 416"></a><a href="https://atcoder.jp/contests/abc416">AtCoder Beginner Contest 416</a></h1><h2 id="Development-有修改floyd"><a href="#Development-有修改floyd" class="headerlink" title="Development(有修改floyd)"></a><a href="https://atcoder.jp/contests/abc416/tasks/abc416_e">Development(有修改floyd)</a></h2><p><img src="/./../img/image-20250809181455699.png" alt="image-20250809181455699"></p><img src="./../img/image-20250809181531948.png" alt="image-20250809181531948" style="zoom:67%;" /><p>观察数据范围，对于n&#x3D;500的图论问题可以使用Floyd算法，n^3应该是跑不满的。</p><p>本题中的机场可以看作是一个超级源点，即令0与所有设立了机场的城市相连，来回权重设为T&#x2F;2。为了防止浮点数的出现，将所有的权重乘二。</p><p>问题中会对图进行修改，注意到floyd算法的本质是枚举中间节点，对于修改，枚举新的路径的城市作为中间节点，重新做Floyd算法递推，可以在n^2的时间复杂度内更新距离。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 加快</span><br><span class="hljs-built_in">min</span>=<span class="hljs-keyword">lambda</span> x,y:x <span class="hljs-keyword">if</span> x&lt;y <span class="hljs-keyword">else</span> y<br>inf=<span class="hljs-number">10</span>**<span class="hljs-number">18</span><br><br>n,m=RR()<br><span class="hljs-comment"># 建图</span><br>g=[[inf]*(n+<span class="hljs-number">1</span>) <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(n+<span class="hljs-number">1</span>)]<br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(m):<br>    u,v,w=RR()<br>    g[u][v]=g[v][u]=<span class="hljs-built_in">min</span>(g[u][v],<span class="hljs-number">2</span>*w)<br>    <br><span class="hljs-comment"># 建立源点</span><br>k,t=RR()<br><span class="hljs-keyword">for</span> u <span class="hljs-keyword">in</span> RR():<br>    g[<span class="hljs-number">0</span>][u]=g[u][<span class="hljs-number">0</span>]=t<br><br><span class="hljs-comment"># floyd递推</span><br>f=g<br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(n+<span class="hljs-number">1</span>):<br>    f[i][i]=<span class="hljs-number">0</span><br><br><span class="hljs-keyword">for</span> k <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(n+<span class="hljs-number">1</span>):<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(n+<span class="hljs-number">1</span>):<br>        <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(n+<span class="hljs-number">1</span>):<br>            f[i][j]=<span class="hljs-built_in">min</span>(f[i][j],f[i][k]+f[k][j])<br><span class="hljs-comment"># 更新逻辑，将新的路径的端点作为中间节点，再次递推</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">update</span>(<span class="hljs-params">u,v</span>):<br>    <span class="hljs-comment"># global ans</span><br>    <span class="hljs-keyword">for</span> k <span class="hljs-keyword">in</span> &#123;u,v&#125;:<br>        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(n+<span class="hljs-number">1</span>):<br>            <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(n+<span class="hljs-number">1</span>):<br>                f[i][j]=<span class="hljs-built_in">min</span>(f[i][j],f[i][k]+f[k][j])<br><br><span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(R()):<br>    q=RR()<br>    <span class="hljs-keyword">if</span> q[<span class="hljs-number">0</span>]==<span class="hljs-number">1</span>:<br>        x,y,w=q[<span class="hljs-number">1</span>:]<br>        <span class="hljs-comment"># 更新</span><br>        f[x][y]=f[y][x]=<span class="hljs-built_in">min</span>(f[x][y],<span class="hljs-number">2</span>*w)<br>        update(x,y)<br>    <span class="hljs-keyword">elif</span> q[<span class="hljs-number">0</span>]==<span class="hljs-number">2</span>:<br>        <span class="hljs-comment"># 更新</span><br>        f[<span class="hljs-number">0</span>][q[<span class="hljs-number">1</span>]]=f[q[<span class="hljs-number">1</span>]][<span class="hljs-number">0</span>]=<span class="hljs-built_in">min</span>(f[q[<span class="hljs-number">1</span>]][<span class="hljs-number">0</span>],t)<br>        update(<span class="hljs-number">0</span>,q[<span class="hljs-number">1</span>])<br>    <span class="hljs-keyword">else</span>:<br>        <span class="hljs-comment"># 给定的数据范围可以暴力求解</span><br>        ans=<span class="hljs-number">0</span><br>        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>,n+<span class="hljs-number">1</span>):<br>            tmp=f[i]<br>            <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>,n+<span class="hljs-number">1</span>):<br>                <span class="hljs-keyword">if</span> tmp[j]!=inf:ans+=tmp[j]<br>        <span class="hljs-built_in">print</span>(ans//<span class="hljs-number">2</span>)<span class="hljs-comment"># 最后整除二</span><br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>算法</category>
+      
+      <category>AtCoder</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Floyd</tag>
+      
+      <tag>图论</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>AtCoder Beginner Contest 415 补题</title>
+    <link href="/2025/07/24/AtCoder%20Beginner%20Contest%20415/"/>
+    <url>/2025/07/24/AtCoder%20Beginner%20Contest%20415/</url>
+    
+    <content type="html"><![CDATA[<h1 id="AtCoder-Beginner-Contest-415"><a href="#AtCoder-Beginner-Contest-415" class="headerlink" title="AtCoder Beginner Contest 415"></a><a href="https://atcoder.jp/contests/abc415">AtCoder Beginner Contest 415</a></h1><h2 id="Hungry-Takahashi"><a href="#Hungry-Takahashi" class="headerlink" title="Hungry Takahashi"></a><a href="https://atcoder.jp/contests/abc415/tasks/abc415_e">Hungry Takahashi</a></h2><img src="./../img/image-20250724162744216.png" alt="image-20250724162744216" style="zoom:67%;" /><img src="./../img/image-20250724162749937.png" alt="image-20250724162749937" style="zoom:67%;" /><p>本题使用bfs往外找，但是队列中不能维护已有的硬币数量，否则在bfs查找的过程中会因为集合去重导致硬币更多的状态被忽略，如果使用Dijkstra算法松弛操作——同一位置只有硬币数量较多时才会记录，对于给定的数据范围会超时(一个位置可能有很多状态)。这里也不能使用堆优化，因为本题并不是硬币数量越多越好，即使数量少，但只要能到终点位置即可。</p><p>本题使用类似刷表法的bfs操作，保证一个位置只有一个状态。队列中只记录坐标，同时用一个二维数组记录到达每个位置的最大值，在计算下一个位置时，会从数组中取值计算并更新二维数组中的最大值。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><code class="hljs python">m,n=RR()<br>g=[]<br>tmp=[]<br><span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(m):<br>    g.append(RR())<br>    tmp.extend(g[-<span class="hljs-number">1</span>])<br><br>nums=RR()<br>tmp.sort()<br>l,r=<span class="hljs-number">0</span>,<span class="hljs-built_in">sum</span>(nums)+<span class="hljs-number">10</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">check</span>(<span class="hljs-params">x</span>):<br>    d=deque([(<span class="hljs-number">0</span>,<span class="hljs-number">0</span>)])<br>    dis=[[-<span class="hljs-number">1</span>]*n <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(m)]<br>    dis[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>]=x<br>    <span class="hljs-keyword">while</span> d:<br>        i,j=d.popleft()<br>        cur=dis[i][j]+g[i][j]<br>        <span class="hljs-comment"># 不满足要求</span><br>        <span class="hljs-keyword">if</span> cur&lt;nums[i+j]:<span class="hljs-keyword">continue</span><br>        cur-=nums[i+j]<br><br>        <span class="hljs-keyword">for</span> dx,dy <span class="hljs-keyword">in</span> (<span class="hljs-number">1</span>,<span class="hljs-number">0</span>),(<span class="hljs-number">0</span>,<span class="hljs-number">1</span>):<br>            <span class="hljs-comment"># 不越界</span><br>            <span class="hljs-keyword">if</span> <span class="hljs-number">0</span>&lt;=(x:=dx+i)&lt;m <span class="hljs-keyword">and</span> <span class="hljs-number">0</span>&lt;=(y:=j+dy)&lt;n:<br>                <span class="hljs-comment"># 只有当没访问过才会加到队列中</span><br>                <span class="hljs-keyword">if</span> dis[x][y]==-<span class="hljs-number">1</span>:<br>                    d.append((x,y))<br>                <span class="hljs-comment"># 更新到这个地方的最大值</span><br>                dis[x][y]=<span class="hljs-built_in">max</span>(dis[x][y],cur)<br>    <span class="hljs-keyword">if</span> dis[-<span class="hljs-number">1</span>][-<span class="hljs-number">1</span>]&lt;<span class="hljs-number">0</span>:<span class="hljs-keyword">return</span> <span class="hljs-literal">False</span><br>    <span class="hljs-keyword">return</span> dis[-<span class="hljs-number">1</span>][-<span class="hljs-number">1</span>]+g[-<span class="hljs-number">1</span>][-<span class="hljs-number">1</span>]&gt;=nums[-<span class="hljs-number">1</span>]<br><br><span class="hljs-comment"># 二分</span><br><span class="hljs-keyword">while</span> l&lt;=r:<br>    mid=(l+r)&gt;&gt;<span class="hljs-number">1</span><br>    <span class="hljs-keyword">if</span> check(mid):<br>        r=mid-<span class="hljs-number">1</span><br>    <span class="hljs-keyword">else</span>:<br>        l=mid+<span class="hljs-number">1</span><br><span class="hljs-built_in">print</span>(r+<span class="hljs-number">1</span>)<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>算法</category>
+      
+      <category>AtCoder</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>BFS</tag>
+      
+      <tag>网格图</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>AtCoder Beginner Contest 414 补题</title>
     <link href="/2025/07/17/AtCoder%20Beginner%20Contest%20414/"/>
     <url>/2025/07/17/AtCoder%20Beginner%20Contest%20414/</url>
@@ -51,9 +138,9 @@
     
     <tags>
       
-      <tag>贪心</tag>
-      
       <tag>分治</tag>
+      
+      <tag>贪心</tag>
       
       <tag>思维</tag>
       
@@ -82,9 +169,9 @@
     
     <tags>
       
-      <tag>贪心</tag>
-      
       <tag>分治</tag>
+      
+      <tag>贪心</tag>
       
       <tag>思维</tag>
       
@@ -322,9 +409,9 @@
       
       <tag>贪心</tag>
       
-      <tag>括号序列</tag>
-      
       <tag>枚举</tag>
+      
+      <tag>括号序列</tag>
       
       <tag>状压</tag>
       
