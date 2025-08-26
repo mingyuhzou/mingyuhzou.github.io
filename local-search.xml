@@ -4,6 +4,35 @@
   
   
   <entry>
+    <title>AtCoder Beginner Contest 418 vp</title>
+    <link href="/2025/08/17/AtCoder%20Beginner%20Contest%20418/"/>
+    <url>/2025/08/17/AtCoder%20Beginner%20Contest%20418/</url>
+    
+    <content type="html"><![CDATA[<h1 id="AtCoder-Beginner-Contest-418"><a href="#AtCoder-Beginner-Contest-418" class="headerlink" title="AtCoder Beginner Contest 418"></a><a href="https://atcoder.jp/contests/abc418">AtCoder Beginner Contest 418</a></h1><h2 id="Trapezium"><a href="#Trapezium" class="headerlink" title="Trapezium"></a><a href="https://atcoder.jp/contests/abc418/tasks/abc418_e">Trapezium</a></h2><p><img src="/./../img/image-20250826174635144.png" alt="image-20250826174635144"></p><p><img src="/./../img/image-20250826174642266.png" alt="image-20250826174642266"></p><p>对于给定的数据范围，显而易见的可以找出两个点之间的斜率然后组合求解，但是这里会对平行四边形重复求解，因此利用平行四边形对角线中点相同的规则求解删除重复计算的平行四边形，这里对平行四边形的求解也是用组合。</p><p>注意哈希表存储分数防止精度问题。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs python">n=R()<br>nums=[RR() <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(n)]<br>b=[x[-<span class="hljs-number">1</span>] <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> nums]<br><span class="hljs-comment"># 前缀和</span><br>pre=get_pre(b)<br><br><span class="hljs-comment"># 动态规划</span><br>f=[[inf]*<span class="hljs-number">1010</span> <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(n)]<br><br><span class="hljs-comment"># 预处理</span><br><span class="hljs-keyword">for</span> p <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1010</span>):<br>    <span class="hljs-keyword">if</span> p&lt;=nums[-<span class="hljs-number">1</span>][<span class="hljs-number">0</span>]:<br>        f[-<span class="hljs-number">1</span>][p]=p+nums[-<span class="hljs-number">1</span>][<span class="hljs-number">1</span>]<br>    <span class="hljs-keyword">else</span>:<br>        f[-<span class="hljs-number">1</span>][p]=<span class="hljs-built_in">max</span>(<span class="hljs-number">0</span>,p-nums[-<span class="hljs-number">1</span>][<span class="hljs-number">2</span>])<br><span class="hljs-comment"># 递推</span><br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(n-<span class="hljs-number">2</span>,-<span class="hljs-number">1</span>,-<span class="hljs-number">1</span>):<br>    <span class="hljs-keyword">for</span> p <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1010</span>):<br>        <span class="hljs-keyword">if</span> p&lt;=nums[i][<span class="hljs-number">0</span>]:<br>            f[i][p]=f[i+<span class="hljs-number">1</span>][p+nums[i][<span class="hljs-number">1</span>]]<br>        <span class="hljs-keyword">else</span>:<br>            f[i][p]=f[i+<span class="hljs-number">1</span>][<span class="hljs-built_in">max</span>(<span class="hljs-number">0</span>,p-nums[i][<span class="hljs-number">2</span>])]<br><br><span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(R()):<br>    x=R()<br>    idx=<span class="hljs-number">0</span><br>    <span class="hljs-comment"># 大于，查找什么时候会小于等于1000</span><br>    <span class="hljs-keyword">if</span> x&gt;<span class="hljs-number">1000</span>:<br>        idx=bisect_left(pre,x-<span class="hljs-number">1000</span>)<br>        <span class="hljs-comment"># 太大了会一直减小，直接特判求解</span><br>        <span class="hljs-keyword">if</span> idx&gt;=n:<br>            <span class="hljs-built_in">print</span>(x-pre[-<span class="hljs-number">1</span>])<br>            <span class="hljs-keyword">continue</span><br>        x-=pre[idx]<br>    ans=f[idx][x]<br>    <span class="hljs-built_in">print</span>(ans)<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>算法</category>
+      
+      <category>AtCoder</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>几何</tag>
+      
+      <tag>枚举</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>AtCoder Beginner Contest 417 vp</title>
     <link href="/2025/08/10/AtCoder%20Beginner%20Contest%20417/"/>
     <url>/2025/08/10/AtCoder%20Beginner%20Contest%20417/</url>
