@@ -4,6 +4,91 @@
   
   
   <entry>
+    <title>AtCoder Beginner Contest 422 vp</title>
+    <link href="/2025/09/14/AtCoder%20Beginner%20Contest%20422/"/>
+    <url>/2025/09/14/AtCoder%20Beginner%20Contest%20422/</url>
+    
+    <content type="html"><![CDATA[<h1 id="AtCoder-Beginner-Contest-422"><a href="#AtCoder-Beginner-Contest-422" class="headerlink" title="AtCoder Beginner Contest 422"></a><a href="https://atcoder.jp/contests/abc422">AtCoder Beginner Contest 422</a></h1><h2 id="Colinear"><a href="#Colinear" class="headerlink" title="Colinear"></a><a href="https://atcoder.jp/contests/abc422/tasks/abc422_e">Colinear</a></h2><p><img src="/./../img/image-20250914191523449.png" alt="image-20250914191523449"></p><p><img src="/./../img/image-20250914191532840.png" alt="image-20250914191532840"></p><p>注意到要求至少一般的点都出现在直线上，那么随机选两个点在最终的直线上的概率为0.25，因此随机选20个点判断它们形成的直线是否满足条件即可。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs python">n=R()<br>nums=[]<br><br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(n):<br>    nums.append(RR())<br><br>i=<span class="hljs-number">0</span><br><span class="hljs-keyword">while</span> i&lt;<span class="hljs-number">20</span>:<br>    a=randint(<span class="hljs-number">0</span>,n-<span class="hljs-number">1</span>)<br>    b=randint(<span class="hljs-number">0</span>,n-<span class="hljs-number">1</span>)<br>    <span class="hljs-keyword">if</span> a==b:<span class="hljs-keyword">continue</span><br>    i+=<span class="hljs-number">1</span><br>    x1,y1=nums[a]<br>    x2,y2=nums[b]<br><br>    a=y2-y1<br>    b=x1-x2<br>    c=(x2-x1)*y1-(y2-y1)*x1<br>    cnt=<span class="hljs-number">0</span><br>    <span class="hljs-keyword">for</span> x,y <span class="hljs-keyword">in</span> nums:<br>        <span class="hljs-keyword">if</span> a*x+b*y+c==<span class="hljs-number">0</span>:<br>            cnt+=<span class="hljs-number">1</span><br>        <span class="hljs-keyword">if</span> cnt&gt;=ceil(n/<span class="hljs-number">2</span>):<br>            <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;Yes&#x27;</span>)<br>            <span class="hljs-built_in">print</span>(a,b,c)<br>            exit(<span class="hljs-number">0</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;No&#x27;</span>)<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>算法</category>
+      
+      <category>AtCoder</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>枚举</tag>
+      
+      <tag>几何</tag>
+      
+      <tag>trick</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>AtCoder Beginner Contest 421 vp</title>
+    <link href="/2025/09/10/AtCoder%20Beginner%20Contest%20421/"/>
+    <url>/2025/09/10/AtCoder%20Beginner%20Contest%20421/</url>
+    
+    <content type="html"><![CDATA[<h1 id="AtCoder-Beginner-Contest-421"><a href="#AtCoder-Beginner-Contest-421" class="headerlink" title="AtCoder Beginner Contest 421"></a><a href="https://atcoder.jp/contests/abc421">AtCoder Beginner Contest 421</a></h1><h2 id="RLE-Moving"><a href="#RLE-Moving" class="headerlink" title="RLE Moving"></a><a href="https://atcoder.jp/contests/abc421/tasks/abc421_d">RLE Moving</a></h2><img src="./../img/image-20250910193431620.png" alt="image-20250910193431620" style="zoom: 67%;" /><img src="./../img/image-20250910193449476.png" alt="image-20250910193449476" style="zoom:50%;" /><p>本题需要通过双指针来保证每个操作中处理的步数是一致的，对于是否会有重叠位置，需要分类讨论——在同一位置时，出发方向相同则接下来的步数都是重叠的；某个方向的位置相同时，另一个方向是同向，二者之间的距离是奇数且小于步数，那么就可以相遇一次；反之，需要满足两个位置是在正方形的两个顶点，且距离小于步数，那么也会相遇一次。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><code class="hljs python">x1,y1,x2,y2=RR()<br>n,m,l=RR()<br><br>a=[]<br>b=[]<br><br><span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(m):<br>    tmp=RLS()<br>    a.append([tmp[<span class="hljs-number">0</span>],<span class="hljs-built_in">int</span>(tmp[<span class="hljs-number">1</span>])])<br><span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(l):<br>    tmp=RLS()<br>    b.append([tmp[<span class="hljs-number">0</span>],<span class="hljs-built_in">int</span>(tmp[<span class="hljs-number">1</span>])])<br><br>i,j=<span class="hljs-number">0</span>,<span class="hljs-number">0</span><br>total=ans=<span class="hljs-number">0</span><br><br>vec=&#123;<span class="hljs-string">&#x27;L&#x27;</span>,<span class="hljs-string">&#x27;R&#x27;</span>&#125;<br>hor=&#123;<span class="hljs-string">&#x27;U&#x27;</span>,<span class="hljs-string">&#x27;D&#x27;</span>&#125;<br><br>dirs=&#123;<span class="hljs-string">&#x27;D&#x27;</span>:(<span class="hljs-number">1</span>,<span class="hljs-number">0</span>),<span class="hljs-string">&#x27;U&#x27;</span>:(-<span class="hljs-number">1</span>,<span class="hljs-number">0</span>),<span class="hljs-string">&#x27;L&#x27;</span>:(<span class="hljs-number">0</span>,-<span class="hljs-number">1</span>),<span class="hljs-string">&#x27;R&#x27;</span>:(<span class="hljs-number">0</span>,<span class="hljs-number">1</span>)&#125;<br><br><span class="hljs-keyword">while</span> total&lt;n:<br><br>    d1,d2=a[i][<span class="hljs-number">0</span>],b[j][<span class="hljs-number">0</span>]<br>    <span class="hljs-comment"># 双指针判断步数</span><br>    <span class="hljs-keyword">if</span> a[i][<span class="hljs-number">1</span>]==b[j][<span class="hljs-number">1</span>]:<br>        step=a[i][<span class="hljs-number">1</span>]<br>        a[i][<span class="hljs-number">1</span>]=b[j][<span class="hljs-number">1</span>]=<span class="hljs-number">0</span><br>        i+=<span class="hljs-number">1</span><br>        j+=<span class="hljs-number">1</span><br>    <span class="hljs-keyword">elif</span> a[i][<span class="hljs-number">1</span>]&lt;b[j][<span class="hljs-number">1</span>]:<br>        step=a[i][<span class="hljs-number">1</span>]<br>        b[j][<span class="hljs-number">1</span>]-=a[i][<span class="hljs-number">1</span>]<br>        i+=<span class="hljs-number">1</span><br>    <span class="hljs-keyword">else</span>:<br>        step=b[j][<span class="hljs-number">1</span>]<br>        a[i][<span class="hljs-number">1</span>]-=b[j][<span class="hljs-number">1</span>]<br>        j+=<span class="hljs-number">1</span><br>    <span class="hljs-comment"># 同一位置</span><br>    <span class="hljs-keyword">if</span> x1==x2 <span class="hljs-keyword">and</span> y1==y2 <span class="hljs-keyword">and</span> d1==d2:ans+=step<br>    <span class="hljs-comment"># 这里距离不减一就判断是否是偶数，abs(y1-y2)&lt;=2*step要尽可能避免除法，本体数据范围较大，若用ceil((abs(y1-y2)-1)/2)会出现问题</span><br>    <span class="hljs-keyword">elif</span> x1==x2 <span class="hljs-keyword">and</span> <span class="hljs-built_in">abs</span>(y1-y2)&amp;<span class="hljs-number">1</span>==<span class="hljs-number">0</span> <span class="hljs-keyword">and</span> <span class="hljs-built_in">abs</span>(y1-y2)&lt;=<span class="hljs-number">2</span>*step:<br>        <span class="hljs-keyword">if</span> y1&lt;y2 <span class="hljs-keyword">and</span> d1==<span class="hljs-string">&#x27;R&#x27;</span> <span class="hljs-keyword">and</span> d2==<span class="hljs-string">&#x27;L&#x27;</span>:<br>            ans+=<span class="hljs-number">1</span><br>        <span class="hljs-keyword">elif</span> y1&gt;y2 <span class="hljs-keyword">and</span> d1==<span class="hljs-string">&#x27;L&#x27;</span> <span class="hljs-keyword">and</span> d2==<span class="hljs-string">&#x27;R&#x27;</span>:<br>            ans+=<span class="hljs-number">1</span><br>    <span class="hljs-keyword">elif</span> y1==y2 <span class="hljs-keyword">and</span> <span class="hljs-built_in">abs</span>(x1-x2)&amp;<span class="hljs-number">1</span>==<span class="hljs-number">0</span> <span class="hljs-keyword">and</span> <span class="hljs-built_in">abs</span>(x1-x2)&lt;=<span class="hljs-number">2</span>*step:<br>        <span class="hljs-keyword">if</span> x1&gt;x2 <span class="hljs-keyword">and</span> d1==<span class="hljs-string">&#x27;U&#x27;</span> <span class="hljs-keyword">and</span> d2==<span class="hljs-string">&#x27;D&#x27;</span>:<br>            ans+=<span class="hljs-number">1</span><br>        <span class="hljs-keyword">elif</span> x1&lt;x2 <span class="hljs-keyword">and</span> d1==<span class="hljs-string">&#x27;D&#x27;</span> <span class="hljs-keyword">and</span> d2==<span class="hljs-string">&#x27;U&#x27;</span>:<br>            ans+=<span class="hljs-number">1</span><br>    <span class="hljs-comment"># 正方形的两个角</span><br>    <span class="hljs-keyword">elif</span> ((d1 <span class="hljs-keyword">in</span> hor <span class="hljs-keyword">and</span> d2 <span class="hljs-keyword">in</span> vec) <span class="hljs-keyword">or</span> (d1 <span class="hljs-keyword">in</span> vec <span class="hljs-keyword">and</span> d2 <span class="hljs-keyword">in</span> hor)) <span class="hljs-keyword">and</span> <span class="hljs-built_in">abs</span>(x1-x2)==<span class="hljs-built_in">abs</span>(y1-y2) <span class="hljs-keyword">and</span> <span class="hljs-built_in">abs</span>(x1-x2)&lt;=step:<br>        f=<span class="hljs-literal">False</span><br>        <span class="hljs-keyword">if</span> y1&gt;y2:<br>            x1,x2=x2,x1<br>            y1,y2=y2,y1<br>            d1,d2=d2,d1<br>            f=<span class="hljs-literal">True</span><br>        <span class="hljs-keyword">if</span> x1&gt;x2:<br>            <span class="hljs-keyword">if</span> (d1==<span class="hljs-string">&#x27;R&#x27;</span> <span class="hljs-keyword">and</span> d2==<span class="hljs-string">&#x27;D&#x27;</span>) <span class="hljs-keyword">or</span> (d1==<span class="hljs-string">&#x27;U&#x27;</span> <span class="hljs-keyword">and</span> d2==<span class="hljs-string">&#x27;L&#x27;</span>):<br>                ans+=<span class="hljs-number">1</span><br>        <span class="hljs-keyword">else</span>:<br>            <span class="hljs-keyword">if</span> (d1==<span class="hljs-string">&#x27;R&#x27;</span> <span class="hljs-keyword">and</span> d2==<span class="hljs-string">&#x27;U&#x27;</span>) <span class="hljs-keyword">or</span> (d1==<span class="hljs-string">&#x27;D&#x27;</span> <span class="hljs-keyword">and</span> d2==<span class="hljs-string">&#x27;L&#x27;</span>) :<br>                ans+=<span class="hljs-number">1</span> <br>        <span class="hljs-keyword">if</span> f:<br>            x1,x2=x2,x1<br>            y1,y2=y2,y1<br>            d1,d2=d2,d1<br>    <span class="hljs-comment"># 更新位置</span><br>    total+=step<br>    dx,dy=dirs[d1]<br>    x1+=dx*step<br>    y1+=dy*step<br><br>    dx,dy=dirs[d2]<br>    x2+=dx*step<br>    y2+=dy*step<br><br><span class="hljs-built_in">print</span>(ans)<br><br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>算法</category>
+      
+      <category>AtCoder</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>分类讨论</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>AtCoder Beginner Contest 419 vp</title>
+    <link href="/2025/08/28/AtCoder%20Beginner%20Contest%20419/"/>
+    <url>/2025/08/28/AtCoder%20Beginner%20Contest%20419/</url>
+    
+    <content type="html"><![CDATA[<h1 id="AtCoder-Beginner-Contest-419"><a href="#AtCoder-Beginner-Contest-419" class="headerlink" title="AtCoder Beginner Contest 419"></a><a href="https://atcoder.jp/contests/abc419">AtCoder Beginner Contest 419</a></h1><h2 id="Subarray-Sum-Divisibility"><a href="#Subarray-Sum-Divisibility" class="headerlink" title="Subarray Sum Divisibility"></a><a href="https://atcoder.jp/contests/abc419/tasks/abc419_e">Subarray Sum Divisibility</a></h2><p><img src="/./../img/image-20250828162101666.png" alt="image-20250828162101666"></p><img src="./../img/image-20250828162110181.png" alt="image-20250828162110181" style="zoom:67%;" /><p>考虑滑动窗口的思想，当往后移动时数组的总和会减去$A_i$并加上$A_{i+L}$，题目要求最终的结果满足是K的倍数，那么$A_i$与$A_{i+L}$一定同余于M，因此可以将数组划分为L组，每组要求同余。</p><p>这里还需保证长度为L的子序列总和是M的倍数，那么令$dp_{ij}$表示前i组的总和模M为j时所需的最小操作次数，因为一组的元素都是同余的，所以这里可以把i看作是前L个元素中的第i个，只要考虑前i个就能处理所有的。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs python">n,m,l=RR()<br>nums=RR()<br><br><span class="hljs-comment"># 用于记录每一组同余于j时所需的操作次数</span><br>f=[[<span class="hljs-number">0</span>]*m <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(l+<span class="hljs-number">1</span>)]<br><span class="hljs-comment"># 前i组的总和模M为j时所需的操作</span><br>dp=[[inf]*m <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(l+<span class="hljs-number">1</span>)]<br><br><span class="hljs-comment"># 预处理</span><br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>,l+<span class="hljs-number">1</span>):<span class="hljs-comment"># 组数</span><br>    <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(m):<span class="hljs-comment"># 余数</span><br>        <span class="hljs-keyword">for</span> idx <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(i-<span class="hljs-number">1</span>,n,l): <span class="hljs-comment">#元素位置</span><br>            f[i][j]+=(j-nums[idx]+m)%m<br><br><span class="hljs-comment"># 初始化</span><br>dp[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>]=<span class="hljs-number">0</span><br><br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(l):<br>    <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(m):<br>        <span class="hljs-comment"># 刷表法，枚举每组变同余于k</span><br>        <span class="hljs-keyword">for</span> k <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(m):<br>            dp[i+<span class="hljs-number">1</span>][(j+k)%m]=<span class="hljs-built_in">min</span>(dp[i+<span class="hljs-number">1</span>][(j+k)%m],dp[i][j]+f[i+<span class="hljs-number">1</span>][k])<br><span class="hljs-built_in">print</span>(dp[l][<span class="hljs-number">0</span>])<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>算法</category>
+      
+      <category>AtCoder</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>DP</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>AtCoder Beginner Contest 418 vp</title>
     <link href="/2025/08/17/AtCoder%20Beginner%20Contest%20418/"/>
     <url>/2025/08/17/AtCoder%20Beginner%20Contest%20418/</url>
@@ -22,9 +107,9 @@
     
     <tags>
       
-      <tag>几何</tag>
-      
       <tag>枚举</tag>
+      
+      <tag>几何</tag>
       
     </tags>
     
@@ -167,9 +252,9 @@
     
     <tags>
       
-      <tag>分治</tag>
-      
       <tag>贪心</tag>
+      
+      <tag>分治</tag>
       
       <tag>思维</tag>
       
@@ -198,9 +283,9 @@
     
     <tags>
       
-      <tag>分治</tag>
-      
       <tag>贪心</tag>
+      
+      <tag>分治</tag>
       
       <tag>思维</tag>
       
@@ -438,9 +523,9 @@
       
       <tag>贪心</tag>
       
-      <tag>枚举</tag>
-      
       <tag>括号序列</tag>
+      
+      <tag>枚举</tag>
       
       <tag>状压</tag>
       

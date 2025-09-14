@@ -19,20 +19,18 @@
   <meta name="author" content="nndjxh">
   <meta name="keywords" content="编程">
   
-    <meta name="description" content="ABC413补题E">
+    <meta name="description" content="ABC421 vp">
 <meta property="og:type" content="article">
-<meta property="og:title" content="AtCoder Beginner Contest 413 补题">
-<meta property="og:url" content="http://example.com/2025/07/11/AtCoder%20Beginner%20Contest%20413/index.html">
+<meta property="og:title" content="AtCoder Beginner Contest 421 vp">
+<meta property="og:url" content="http://example.com/2025/09/10/AtCoder%20Beginner%20Contest%20421/index.html">
 <meta property="og:site_name" content="nndjxh个人博客">
-<meta property="og:description" content="ABC413补题E">
+<meta property="og:description" content="ABC421 vp">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/img/Atcode.png">
-<meta property="article:published_time" content="2025-07-11T14:00:00.000Z">
-<meta property="article:modified_time" content="2025-07-11T14:00:00.000Z">
+<meta property="article:published_time" content="2025-09-10T10:00:00.000Z">
+<meta property="article:modified_time" content="2025-09-10T12:00:00.000Z">
 <meta property="article:author" content="Jnndjxh">
-<meta property="article:tag" content="贪心">
-<meta property="article:tag" content="分治">
-<meta property="article:tag" content="思维">
+<meta property="article:tag" content="分类讨论">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="http://example.com/img/Atcode.png">
   
@@ -40,7 +38,7 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>AtCoder Beginner Contest 413 补题 - nndjxh个人博客</title>
+  <title>AtCoder Beginner Contest 421 vp - nndjxh个人博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -206,7 +204,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="AtCoder Beginner Contest 413 补题"></span>
+            <span id="subtitle" data-typed-text="AtCoder Beginner Contest 421 vp"></span>
           
         </div>
 
@@ -222,8 +220,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-07-11 22:00" pubdate>
-          2025年7月11日 晚上
+        <time datetime="2025-09-10 18:00" pubdate>
+          2025年9月10日 晚上
         </time>
       </span>
     
@@ -234,7 +232,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          253 字
+          531 字
         
       </span>
     
@@ -245,7 +243,7 @@
         
         
         
-          3 分钟
+          5 分钟
         
       </span>
     
@@ -291,15 +289,17 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">AtCoder Beginner Contest 413 补题</h1>
+            <h1 id="seo-header">AtCoder Beginner Contest 421 vp</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="AtCoder-Beginner-Contest-413"><a href="#AtCoder-Beginner-Contest-413" class="headerlink" title="AtCoder Beginner Contest 413"></a><a target="_blank" rel="noopener" href="https://atcoder.jp/contests/abc413">AtCoder Beginner Contest 413</a></h1><h2 id="Reverse-2-i"><a href="#Reverse-2-i" class="headerlink" title="Reverse 2^i"></a><a target="_blank" rel="noopener" href="https://atcoder.jp/contests/abc413/tasks/abc413_e">Reverse 2^i</a></h2><p><img src="/./../img/image-20250711220806410.png" srcset="/img/loading.gif" lazyload alt="image-20250711220806410"></p>
-<p>想要让字典序最小，那么需要通过旋转操作将小的数字提到前面去，数组可以被划分为2的幂次的区间，优先处理小的区间，因为对于大的区间无法比较判断是否要交换。</p>
-<p>对于一个区间，将其分为左右两部分，此时的做有区间已经是保证字典序最小的了，关键在于如何比较这两个区间是否需要通过旋转操作变得更小，因为旋转操作不限，那么可以直接比较两个区间的<strong>首部元素</strong>，然后直接交换，等价于将左右两个数组旋转后再旋转。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(R()):<br>    n=R()<br>    nums=RR()<br>    <span class="hljs-comment"># 从小到大枚举</span><br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>,n+<span class="hljs-number">1</span>):<br>        l,r=<span class="hljs-number">0</span>,(<span class="hljs-number">1</span>&lt;&lt;i)-<span class="hljs-number">1</span><br>        <span class="hljs-keyword">while</span> r&lt;<span class="hljs-built_in">len</span>(nums):<br>            mid=(l+r)&gt;&gt;<span class="hljs-number">1</span><br>            <span class="hljs-comment"># 比较首部元素</span><br>            <span class="hljs-keyword">if</span> nums[l]&gt;nums[mid+<span class="hljs-number">1</span>]:<br>                nums[l:mid+<span class="hljs-number">1</span>],nums[mid+<span class="hljs-number">1</span>:r+<span class="hljs-number">1</span>]=nums[mid+<span class="hljs-number">1</span>:r+<span class="hljs-number">1</span>],nums[l:mid+<span class="hljs-number">1</span>]<br>            l=r+<span class="hljs-number">1</span><br>            r=l+(<span class="hljs-number">1</span>&lt;&lt;i)-<span class="hljs-number">1</span><br><br>    <span class="hljs-built_in">print</span>(*nums)<br></code></pre></td></tr></table></figure>
+                <h1 id="AtCoder-Beginner-Contest-421"><a href="#AtCoder-Beginner-Contest-421" class="headerlink" title="AtCoder Beginner Contest 421"></a><a target="_blank" rel="noopener" href="https://atcoder.jp/contests/abc421">AtCoder Beginner Contest 421</a></h1><h2 id="RLE-Moving"><a href="#RLE-Moving" class="headerlink" title="RLE Moving"></a><a target="_blank" rel="noopener" href="https://atcoder.jp/contests/abc421/tasks/abc421_d">RLE Moving</a></h2><img src="./../img/image-20250910193431620.png" srcset="/img/loading.gif" lazyload alt="image-20250910193431620" style="zoom: 67%;" />
+
+<img src="./../img/image-20250910193449476.png" srcset="/img/loading.gif" lazyload alt="image-20250910193449476" style="zoom:50%;" />
+
+<p>本题需要通过双指针来保证每个操作中处理的步数是一致的，对于是否会有重叠位置，需要分类讨论——在同一位置时，出发方向相同则接下来的步数都是重叠的；某个方向的位置相同时，另一个方向是同向，二者之间的距离是奇数且小于步数，那么就可以相遇一次；反之，需要满足两个位置是在正方形的两个顶点，且距离小于步数，那么也会相遇一次。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><code class="hljs python">x1,y1,x2,y2=RR()<br>n,m,l=RR()<br><br>a=[]<br>b=[]<br><br><span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(m):<br>    tmp=RLS()<br>    a.append([tmp[<span class="hljs-number">0</span>],<span class="hljs-built_in">int</span>(tmp[<span class="hljs-number">1</span>])])<br><span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(l):<br>    tmp=RLS()<br>    b.append([tmp[<span class="hljs-number">0</span>],<span class="hljs-built_in">int</span>(tmp[<span class="hljs-number">1</span>])])<br><br>i,j=<span class="hljs-number">0</span>,<span class="hljs-number">0</span><br>total=ans=<span class="hljs-number">0</span><br><br>vec=&#123;<span class="hljs-string">&#x27;L&#x27;</span>,<span class="hljs-string">&#x27;R&#x27;</span>&#125;<br>hor=&#123;<span class="hljs-string">&#x27;U&#x27;</span>,<span class="hljs-string">&#x27;D&#x27;</span>&#125;<br><br>dirs=&#123;<span class="hljs-string">&#x27;D&#x27;</span>:(<span class="hljs-number">1</span>,<span class="hljs-number">0</span>),<span class="hljs-string">&#x27;U&#x27;</span>:(-<span class="hljs-number">1</span>,<span class="hljs-number">0</span>),<span class="hljs-string">&#x27;L&#x27;</span>:(<span class="hljs-number">0</span>,-<span class="hljs-number">1</span>),<span class="hljs-string">&#x27;R&#x27;</span>:(<span class="hljs-number">0</span>,<span class="hljs-number">1</span>)&#125;<br><br><span class="hljs-keyword">while</span> total&lt;n:<br><br>    d1,d2=a[i][<span class="hljs-number">0</span>],b[j][<span class="hljs-number">0</span>]<br>    <span class="hljs-comment"># 双指针判断步数</span><br>    <span class="hljs-keyword">if</span> a[i][<span class="hljs-number">1</span>]==b[j][<span class="hljs-number">1</span>]:<br>        step=a[i][<span class="hljs-number">1</span>]<br>        a[i][<span class="hljs-number">1</span>]=b[j][<span class="hljs-number">1</span>]=<span class="hljs-number">0</span><br>        i+=<span class="hljs-number">1</span><br>        j+=<span class="hljs-number">1</span><br>    <span class="hljs-keyword">elif</span> a[i][<span class="hljs-number">1</span>]&lt;b[j][<span class="hljs-number">1</span>]:<br>        step=a[i][<span class="hljs-number">1</span>]<br>        b[j][<span class="hljs-number">1</span>]-=a[i][<span class="hljs-number">1</span>]<br>        i+=<span class="hljs-number">1</span><br>    <span class="hljs-keyword">else</span>:<br>        step=b[j][<span class="hljs-number">1</span>]<br>        a[i][<span class="hljs-number">1</span>]-=b[j][<span class="hljs-number">1</span>]<br>        j+=<span class="hljs-number">1</span><br>    <span class="hljs-comment"># 同一位置</span><br>    <span class="hljs-keyword">if</span> x1==x2 <span class="hljs-keyword">and</span> y1==y2 <span class="hljs-keyword">and</span> d1==d2:ans+=step<br>    <span class="hljs-comment"># 这里距离不减一就判断是否是偶数，abs(y1-y2)&lt;=2*step要尽可能避免除法，本体数据范围较大，若用ceil((abs(y1-y2)-1)/2)会出现问题</span><br>    <span class="hljs-keyword">elif</span> x1==x2 <span class="hljs-keyword">and</span> <span class="hljs-built_in">abs</span>(y1-y2)&amp;<span class="hljs-number">1</span>==<span class="hljs-number">0</span> <span class="hljs-keyword">and</span> <span class="hljs-built_in">abs</span>(y1-y2)&lt;=<span class="hljs-number">2</span>*step:<br>        <span class="hljs-keyword">if</span> y1&lt;y2 <span class="hljs-keyword">and</span> d1==<span class="hljs-string">&#x27;R&#x27;</span> <span class="hljs-keyword">and</span> d2==<span class="hljs-string">&#x27;L&#x27;</span>:<br>            ans+=<span class="hljs-number">1</span><br>        <span class="hljs-keyword">elif</span> y1&gt;y2 <span class="hljs-keyword">and</span> d1==<span class="hljs-string">&#x27;L&#x27;</span> <span class="hljs-keyword">and</span> d2==<span class="hljs-string">&#x27;R&#x27;</span>:<br>            ans+=<span class="hljs-number">1</span><br>    <span class="hljs-keyword">elif</span> y1==y2 <span class="hljs-keyword">and</span> <span class="hljs-built_in">abs</span>(x1-x2)&amp;<span class="hljs-number">1</span>==<span class="hljs-number">0</span> <span class="hljs-keyword">and</span> <span class="hljs-built_in">abs</span>(x1-x2)&lt;=<span class="hljs-number">2</span>*step:<br>        <span class="hljs-keyword">if</span> x1&gt;x2 <span class="hljs-keyword">and</span> d1==<span class="hljs-string">&#x27;U&#x27;</span> <span class="hljs-keyword">and</span> d2==<span class="hljs-string">&#x27;D&#x27;</span>:<br>            ans+=<span class="hljs-number">1</span><br>        <span class="hljs-keyword">elif</span> x1&lt;x2 <span class="hljs-keyword">and</span> d1==<span class="hljs-string">&#x27;D&#x27;</span> <span class="hljs-keyword">and</span> d2==<span class="hljs-string">&#x27;U&#x27;</span>:<br>            ans+=<span class="hljs-number">1</span><br>    <span class="hljs-comment"># 正方形的两个角</span><br>    <span class="hljs-keyword">elif</span> ((d1 <span class="hljs-keyword">in</span> hor <span class="hljs-keyword">and</span> d2 <span class="hljs-keyword">in</span> vec) <span class="hljs-keyword">or</span> (d1 <span class="hljs-keyword">in</span> vec <span class="hljs-keyword">and</span> d2 <span class="hljs-keyword">in</span> hor)) <span class="hljs-keyword">and</span> <span class="hljs-built_in">abs</span>(x1-x2)==<span class="hljs-built_in">abs</span>(y1-y2) <span class="hljs-keyword">and</span> <span class="hljs-built_in">abs</span>(x1-x2)&lt;=step:<br>        f=<span class="hljs-literal">False</span><br>        <span class="hljs-keyword">if</span> y1&gt;y2:<br>            x1,x2=x2,x1<br>            y1,y2=y2,y1<br>            d1,d2=d2,d1<br>            f=<span class="hljs-literal">True</span><br>        <span class="hljs-keyword">if</span> x1&gt;x2:<br>            <span class="hljs-keyword">if</span> (d1==<span class="hljs-string">&#x27;R&#x27;</span> <span class="hljs-keyword">and</span> d2==<span class="hljs-string">&#x27;D&#x27;</span>) <span class="hljs-keyword">or</span> (d1==<span class="hljs-string">&#x27;U&#x27;</span> <span class="hljs-keyword">and</span> d2==<span class="hljs-string">&#x27;L&#x27;</span>):<br>                ans+=<span class="hljs-number">1</span><br>        <span class="hljs-keyword">else</span>:<br>            <span class="hljs-keyword">if</span> (d1==<span class="hljs-string">&#x27;R&#x27;</span> <span class="hljs-keyword">and</span> d2==<span class="hljs-string">&#x27;U&#x27;</span>) <span class="hljs-keyword">or</span> (d1==<span class="hljs-string">&#x27;D&#x27;</span> <span class="hljs-keyword">and</span> d2==<span class="hljs-string">&#x27;L&#x27;</span>) :<br>                ans+=<span class="hljs-number">1</span> <br>        <span class="hljs-keyword">if</span> f:<br>            x1,x2=x2,x1<br>            y1,y2=y2,y1<br>            d1,d2=d2,d1<br>    <span class="hljs-comment"># 更新位置</span><br>    total+=step<br>    dx,dy=dirs[d1]<br>    x1+=dx*step<br>    y1+=dy*step<br><br>    dx,dy=dirs[d2]<br>    x2+=dx*step<br>    y2+=dy*step<br><br><span class="hljs-built_in">print</span>(ans)<br><br></code></pre></td></tr></table></figure>
 
 
                 
@@ -341,11 +341,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E8%B4%AA%E5%BF%83/" class="print-no-link">#贪心</a>
-      
-        <a href="/tags/%E5%88%86%E6%B2%BB/" class="print-no-link">#分治</a>
-      
-        <a href="/tags/%E6%80%9D%E7%BB%B4/" class="print-no-link">#思维</a>
+        <a href="/tags/%E5%88%86%E7%B1%BB%E8%AE%A8%E8%AE%BA/" class="print-no-link">#分类讨论</a>
       
     </div>
   
@@ -357,8 +353,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>AtCoder Beginner Contest 413 补题</div>
-      <div>http://example.com/2025/07/11/AtCoder Beginner Contest 413/</div>
+      <div>AtCoder Beginner Contest 421 vp</div>
+      <div>http://example.com/2025/09/10/AtCoder Beginner Contest 421/</div>
     </div>
     <div class="license-meta">
       
@@ -370,7 +366,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2025年7月11日</div>
+          <div>2025年9月10日</div>
         </div>
       
       
@@ -402,9 +398,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/07/13/Leetcode%20458/" title="Leetcode 458 补题">
+                      <a href="/2025/09/14/AtCoder%20Beginner%20Contest%20422/" title="AtCoder Beginner Contest 422 vp">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Leetcode 458 补题</span>
+                        <span class="hidden-mobile">AtCoder Beginner Contest 422 vp</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -412,8 +408,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/07/07/AtCoder%20Beginner%20Contest%20412%20/" title="AtCoder Beginner Contest 412 补题">
-                        <span class="hidden-mobile">AtCoder Beginner Contest 412 补题</span>
+                      <a href="/2025/08/28/AtCoder%20Beginner%20Contest%20419/" title="AtCoder Beginner Contest 419 vp">
+                        <span class="hidden-mobile">AtCoder Beginner Contest 419 vp</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
